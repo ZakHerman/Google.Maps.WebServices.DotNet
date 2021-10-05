@@ -1,0 +1,28 @@
+{
+    "snappedPoints": [
+        {
+            "location": {
+                "latitude": 60.170877918672588,
+                "longitude": 24.942699821922421
+            },
+            "originalIndex": 0,
+            "placeId": "ChIJNX9BrM0LkkYRIM-cQg265e8"
+        },
+        {
+            "location": {
+                "latitude": 60.170876898776406,
+                "longitude": 24.942699912064771
+            },
+            "originalIndex": 1,
+            "placeId": "ChIJNX9BrM0LkkYRIM-cQg265e8"
+        },
+        {
+            "location": {
+                "latitude": 60.170874902634374,
+                "longitude": 24.942700088491474
+            },
+            "originalIndex": 2,
+            "placeId": "ChIJNX9BrM0LkkYRIM-cQg265e8"
+        }
+    ]
+}

@@ -1,0 +1,304 @@
+{
+    "geocoded_waypoints": [
+        {
+            "geocoder_status": "OK",
+            "place_id": "Eh44IFdlc3RmaWVsZCBQbGFjZSwgTmV3IFplYWxhbmQiGhIYChQKEglBbdLiSkkNbRHMhXRwat9rtxAI",
+            "types": [
+                "colloquial_area",
+                "locality",
+                "political",
+                "unsupported_value"
+            ]
+        },
+        {
+            "geocoder_status": "OK",
+            "place_id": "ChIJ_5kb1vpHDW0RENfNoq8OXk8",
+            "types": [ "street_address" ]
+        }
+    ],
+    "routes": [
+        {
+            "bounds": {
+                "northeast": {
+                    "lat": -36.849036,
+                    "lng": 174.8409792
+                },
+                "southwest": {
+                    "lat": -36.9263368,
+                    "lng": 174.7640208
+                }
+            },
+            "copyrights": "Map data \u00A92021",
+            "legs": [
+                {
+                    "distance": {
+                        "text": "12.5 km",
+                        "value": 12546
+                    },
+                    "duration": {
+                        "text": "16 mins",
+                        "value": 948
+                    },
+                    "end_address": "228 Queen Street, Auckland CBD, Auckland 1010, New Zealand",
+                    "end_location": {
+                        "lat": -36.8494036,
+                        "lng": 174.7651721
+                    },
+                    "start_address": "8 Westfield Place, Auckland 1060, New Zealand",
+                    "start_location": {
+                        "lat": -36.9259529,
+                        "lng": 174.8390865
+                    },
+                    "steps": [
+                        {
+                            "distance": {
+                                "text": "0.1 km",
+                                "value": 137
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 45
+                            },
+                            "end_location": {
+                                "lat": -36.9263368,
+                                "lng": 174.8376311
+                            },
+                            "html_instructions": "Head \u003cb\u003esouthwest\u003c/b\u003e on \u003cb\u003eWestfield Pl\u003c/b\u003e toward \u003cb\u003eVestey Dr\u003c/b\u003e",
+                            "polyline": {
+                                "points": "dbk`Figcj`@h@pBTvBLx@"
+                            },
+                            "start_location": {
+                                "lat": -36.9259529,
+                                "lng": 174.8390865
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.5 km",
+                                "value": 545
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 69
+                            },
+                            "end_location": {
+                                "lat": -36.923102,
+                                "lng": 174.8409197
+                            },
+                            "html_instructions": "Turn \u003cb\u003eright\u003c/b\u003e onto \u003cb\u003eVestey Dr\u003c/b\u003e",
+                            "maneuver": "turn-right",
+                            "polyline": {
+                                "points": "rdk`Fe~bj`@uD|@g@Ba@Ca@MWKUSW]Wi@mCkG}@qBQu@UuBSo@"
+                            },
+                            "start_location": {
+                                "lat": -36.9263368,
+                                "lng": 174.8376311
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.3 km",
+                                "value": 329
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 52
+                            },
+                            "end_location": {
+                                "lat": -36.9202159,
+                                "lng": 174.8402371
+                            },
+                            "html_instructions": "At the roundabout, take the \u003cb\u003e1st\u003c/b\u003e exit onto \u003cb\u003eMount Wellington Hwy\u003c/b\u003e/\u003cwbr/\u003e\u003cb\u003eRte 3\u003c/b\u003e\u003cdiv style=\"font-size:0.9em\"\u003eContinue to follow Mount Wellington Hwy\u003c/div\u003e",
+                            "maneuver": "roundabout-left",
+                            "polyline": {
+                                "points": "jpj`Fwrcj`@CA?A[GG?O?gAPa@Hk@JUFK@IBSDkATg@J_ARe@HaAPUD"
+                            },
+                            "start_location": {
+                                "lat": -36.923102,
+                                "lng": 174.8409197
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "9.4 km",
+                                "value": 9421
+                            },
+                            "duration": {
+                                "text": "8 mins",
+                                "value": 470
+                            },
+                            "end_location": {
+                                "lat": -36.8638756,
+                                "lng": 174.7659101
+                            },
+                            "html_instructions": "Merge onto \u003cb\u003eState Hwy 1\u003c/b\u003e via the ramp to \u003cb\u003eAuckland\u003c/b\u003e",
+                            "maneuver": "ramp-left",
+                            "polyline": {
+                                "points": "j~i`Foncj`@SNWJUJ_@Jc@NC?[REBa@h@yBfEAD[t@}@nBWx@Wt@i@`BOf@WhAI\\CJ]vBUlA?BERGPGLAHIl@CJ[nBAJQnA_AfGk@vDeA`HId@mB`Ma@bCg@jB[|@a@fAA@s@zAi@bAoAdBA@sBpBw@n@aHtEyGnEoCdBKHy@l@sBzAmAfAaBpB_A~AOXc@`Au@rBkA|D}A|FY~@{AzEA@oAtCgAfBgAzA[\\}@bAsC~BgC~AmB~@e@Pe@ReA`@eDrAOFaGdCaE`BqD|Aa@PKDa@RyAfAoBzAuBbCiBhCaB~BuBtDQXQ\\oF|JQ\\Ud@S`@iB`D_EdH_DvES\\IPc@z@GJO`@Sf@mAfDkClHSj@Qh@iCxGiEpIgFzHo@t@mHxHw@x@eCdCWXcGfGmCnCwHjH}AxAa@ZsH~FcAx@g@d@]`@Yd@q@hAq@hAUd@g@bAKVGPGRUj@a@nA]lAQn@YfA?@sAhF[~@e@hA_@|@Ub@Q^QX]j@g@z@s@z@_AfAKJaBbBgB~AKJ}@jAY\\}EnHEFyChEcAlAs@l@mAx@eAb@k@NC@e@NuBd@E@e@JODYNaAb@ML_Av@eB~B"
+                            },
+                            "start_location": {
+                                "lat": -36.9202159,
+                                "lng": 174.8402371
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "1.2 km",
+                                "value": 1212
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 76
+                            },
+                            "end_location": {
+                                "lat": -36.8549587,
+                                "lng": 174.7691665
+                            },
+                            "html_instructions": "Take exit \u003cb\u003e429A-B-C\u003c/b\u003e toward \u003cb\u003eWellesley St\u003c/b\u003e",
+                            "maneuver": "ramp-left",
+                            "polyline": {
+                                "points": "f~~_F}}ti`@C^CLc@~AKV[~@KTKRMRKLKBC@C@ML]P[Ne@HM@O@U@I?a@Ag@AYAc@Gg@K_@M{@[[OUKu@g@gAw@?AgBuAmBwA{AmAm@a@mCuBcAw@AAcBuAsB}AsAcA}@s@k@c@k@e@"
+                            },
+                            "start_location": {
+                                "lat": -36.8638756,
+                                "lng": 174.7659101
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.2 km",
+                                "value": 230
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 34
+                            },
+                            "end_location": {
+                                "lat": -36.853252,
+                                "lng": 174.7676996
+                            },
+                            "html_instructions": "Turn \u003cb\u003eleft\u003c/b\u003e onto \u003cb\u003eWellesley St Bridge\u003c/b\u003e",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "nf}_Firui`@a@^oAdA{@j@]Zq@h@wAlA"
+                            },
+                            "start_location": {
+                                "lat": -36.8549587,
+                                "lng": 174.7691665
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.2 km",
+                                "value": 246
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 51
+                            },
+                            "end_location": {
+                                "lat": -36.851586,
+                                "lng": 174.7658862
+                            },
+                            "html_instructions": "Continue onto \u003cb\u003eWellesley St E\u003c/b\u003e",
+                            "polyline": {
+                                "points": "x{|_Fciui`@gA~@g@f@_@d@SVIHQVUTOR]`@_@b@ORW\\"
+                            },
+                            "start_location": {
+                                "lat": -36.853252,
+                                "lng": 174.7676996
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.3 km",
+                                "value": 251
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 85
+                            },
+                            "end_location": {
+                                "lat": -36.8494368,
+                                "lng": 174.7667264
+                            },
+                            "html_instructions": "\u003cb\u003eWellesley St E\u003c/b\u003e turns \u003cb\u003eright\u003c/b\u003e and becomes \u003cb\u003eKitchener St\u003c/b\u003e",
+                            "polyline": {
+                                "points": "lq|_Fy}ti`@UA]EKE{Ae@ICmAc@aAYAAuBo@"
+                            },
+                            "start_location": {
+                                "lat": -36.851586,
+                                "lng": 174.7658862
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.1 km",
+                                "value": 132
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 50
+                            },
+                            "end_location": {
+                                "lat": -36.849036,
+                                "lng": 174.7653262
+                            },
+                            "html_instructions": "Turn \u003cb\u003eleft\u003c/b\u003e onto \u003cb\u003eVictoria St E\u003c/b\u003e",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "~c|_Facui`@c@~BSbAWrA"
+                            },
+                            "start_location": {
+                                "lat": -36.8494368,
+                                "lng": 174.7667264
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "43 m",
+                                "value": 43
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 16
+                            },
+                            "end_location": {
+                                "lat": -36.8494036,
+                                "lng": 174.7651721
+                            },
+                            "html_instructions": "Turn \u003cb\u003eleft\u003c/b\u003e onto \u003cb\u003eQueen St\u003c/b\u003e\u003cdiv style=\"font-size:0.9em\"\u003eDestination will be on the left\u003c/div\u003e",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "na|_Fizti`@fA^"
+                            },
+                            "start_location": {
+                                "lat": -36.849036,
+                                "lng": 174.7653262
+                            },
+                            "travel_mode": "DRIVING"
+                        }
+                    ],
+                    "traffic_speed_entry": [],
+                    "via_waypoint": []
+                }
+            ],
+            "overview_polyline": {
+                "points": "dbk`Figcj`@h@pBTvBLx@uD|@g@Ba@Cy@Ym@q@eDuH}@qBQu@UuBSo@CCc@GwAPmAT_ARyE~@wAVk@Z}Af@a@Va@h@yBfE]z@}@nBWx@aAvCg@pBaAnFEVO^k@rD_CzOoAfIoCdQg@jB[|@c@hA}A~CqAfBsBpBw@n@{PdL{CnBmDhCmAfAaBpBoAxBc@`Au@rBiDzLuBzGqAvCoCbEyA`BsC~BgC~AsCpAaHpCwSvIm@XiEbDuBbCiBhCaB~BuBtDc@v@aGzKi@fAiHfMsDtFm@lAWl@aBnE_DxI{CbIiEpIgFzH}InJyM`NmCnCwHjH_CtBwJxHeAfA}BxD}@hBSh@]~@_A|C_CbJaAhCu@`BiB`DsBbCmBnBsBjBwAhBcFvHyChEcAlAs@l@mAx@eAb@k@Ni@P{Bf@u@P{Ar@mAdAeB~BC^g@lBg@vAWh@Y`@ODQNy@`@s@Je@Bk@AaACkAS{Ai@q@[}B_BgBwAiEeD{DwC}GmFiFaEqBdByAfAqEvDg@f@s@|@aAjAeBvBs@GgBk@{CcAuBo@c@~Bk@vCfA^"
+            },
+            "summary": "State Hwy 1",
+            "warnings": [],
+            "waypoint_order": []
+        }
+    ],
+    "status": "OK"
+}

@@ -1,0 +1,33 @@
+﻿using System.Collections.Generic;
+using Google.Maps.WebServices.Common;
+using Newtonsoft.Json;
+
+namespace Google.Maps.WebServices.Directions
+{
+    /// <summary>
+    /// <see cref="DirectionsServiceResponse" /> represents the the Google Maps Directions Web
+    /// Service response.
+    /// </summary>
+    public class DirectionsServiceResponse : IResponse<DirectionsResult>
+    {
+        /// <inheritdoc />
+        [JsonProperty("error_message")]
+        public string ErrorMessage { get; set; }
+
+        /// <inheritdoc />
+        public bool IsSuccessful => ResponseStatus == ApiResponseStatus.Ok;
+
+        /// <inheritdoc />
+        [JsonProperty("status")]
+        public ApiResponseStatus ResponseStatus { get; set; }
+
+        /// <inheritdoc />
+        public DirectionsResult Result => new DirectionsResult(GeocodedWaypoints, Routes);
+
+        [JsonProperty("geocoded_waypoints")]
+        private List<GeocodedWaypoint> GeocodedWaypoints { get; } = new List<GeocodedWaypoint>();
+
+        [JsonProperty("routes")]
+        private List<DirectionsRoute> Routes { get; } = new List<DirectionsRoute>();
+    }
+}
