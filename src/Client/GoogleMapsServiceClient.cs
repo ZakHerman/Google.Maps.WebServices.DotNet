@@ -7,7 +7,6 @@ using Google.Maps.WebServices.Common;
 using Google.Maps.WebServices.Converters;
 using Google.Maps.WebServices.Exceptions;
 using Google.Maps.WebServices.Internals;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Polly;
 using Polly.Wrap;
@@ -26,7 +25,6 @@ namespace Google.Maps.WebServices
     {
         private readonly string _apiKey;
         private readonly HttpClient _httpClient;
-        private readonly ILogger _logger;
         private readonly AsyncPolicyWrap<HttpResponseMessage> _policyWrap;
 
         private static readonly JsonSerializerSettings _serializerSettings = new JsonSerializerSettings
@@ -46,7 +44,6 @@ namespace Google.Maps.WebServices
             _apiKey = apiKey;
             _httpClient = HttpClientBuilder.CreateClient();
             _policyWrap = Policy.WrapAsync(PolicyBuilder.GetRetryPolicy(), PolicyBuilder.GetCircuitBreakerPolicy());
-            _logger = LoggerBuilder.CreateLogger<GoogleMapsServiceClient>();
         }
 
         /// <summary>
