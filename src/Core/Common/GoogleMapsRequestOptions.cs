@@ -41,7 +41,7 @@ namespace Google.Maps.WebServices.Common
         /// <summary>
         /// The request URI.
         /// </summary>
-        internal Uri Uri => _uriBuilder.Uri;
+        public Uri Uri => _uriBuilder.Uri;
 
         /// <summary>
         /// Sets a custom query parameter.
