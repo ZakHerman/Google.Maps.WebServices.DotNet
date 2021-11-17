@@ -91,22 +91,44 @@ namespace Google.Maps.WebServices.Directions
         }
 
         /// <inheritdoc cref="SetArrivalTime(long)" />
-        public DirectionsRequestOptions SetArrivalTime(DateTime time) =>
-            SetArrivalTime(((DateTimeOffset)time).ToUnixTimeSeconds());
+        public DirectionsRequestOptions SetArrivalTime(DateTime arrivalTime)
+        {
+            if (arrivalTime.Kind == DateTimeKind.Unspecified)
+                throw new ArgumentException("Value has to be specified as local or UTC time.", nameof(arrivalTime));
+
+            return SetArrivalTime((DateTimeOffset)arrivalTime);
+        }
+
+        /// <inheritdoc cref="SetArrivalTime(long)" />
+        public DirectionsRequestOptions SetArrivalTime(DateTimeOffset arrivalTime)
+        {
+            return SetArrivalTime(arrivalTime.ToUnixTimeSeconds());
+        }
 
         /// <summary>
         /// Set the arrival time for a <see cref="TravelMode.Transit" /> directions request.
         /// </summary>
-        /// <param name="time">The arrival time to calculate directions for in UTC.</param>
+        /// <param name="arrivalTime">The arrival time to calculate directions for in UTC.</param>
         /// <returns>Returns this <see cref="DirectionsRequestOptions" /> for call chaining.</returns>
-        public DirectionsRequestOptions SetArrivalTime(long time)
+        public DirectionsRequestOptions SetArrivalTime(long arrivalTime)
         {
-            return SetQueryParameter("arrival_time", time.ToString());
+            return SetQueryParameter("arrival_time", arrivalTime.ToString());
         }
 
         /// <inheritdoc cref="SetDepartureTime(long)" />
-        public DirectionsRequestOptions SetDepartureTime(DateTime time) =>
-            SetDepartureTime(((DateTimeOffset)time).ToUnixTimeSeconds());
+        public DirectionsRequestOptions SetDepartureTime(DateTime departureTime)
+        {
+            if (departureTime.Kind == DateTimeKind.Unspecified)
+                throw new ArgumentException("Value has to be specified as local or UTC time.", nameof(departureTime));
+
+            return SetDepartureTime((DateTimeOffset)departureTime);
+        }
+
+        /// <inheritdoc cref="SetDepartureTime(long)" />
+        public DirectionsRequestOptions SetDepartureTime(DateTimeOffset departureTime)
+        {
+            return SetDepartureTime(departureTime.ToUnixTimeSeconds());
+        }
 
         /// <summary>
         /// Set the departure time for a <see cref="TravelMode.Transit" /> or <see
@@ -117,11 +139,11 @@ namespace Google.Maps.WebServices.Directions
         /// traffic model is supplied, then departure time must be specified.
         /// <para>Duration in traffic will only be returned if the departure time is specified.</para>
         /// </remarks>
-        /// <param name="time">The departure time to calculate directions for in UTC.</param>
+        /// <param name="departureTime">The departure time to calculate directions for in UTC.</param>
         /// <returns>Returns this <see cref="DirectionsRequestOptions" /> for call chaining.</returns>
-        public DirectionsRequestOptions SetDepartureTime(long time)
+        public DirectionsRequestOptions SetDepartureTime(long departureTime)
         {
-            return SetQueryParameter("departure_time", time.ToString());
+            return SetQueryParameter("departure_time", departureTime.ToString());
         }
 
         /// <summary>

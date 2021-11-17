@@ -2534,14 +2534,20 @@
         <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetArrivalTime(System.DateTime)">
             <inheritdoc cref="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetArrivalTime(System.Int64)" />
         </member>
+        <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetArrivalTime(System.DateTimeOffset)">
+            <inheritdoc cref="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetArrivalTime(System.Int64)" />
+        </member>
         <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetArrivalTime(System.Int64)">
             <summary>
             Set the arrival time for a <see cref="F:Google.Maps.WebServices.Common.TravelMode.Transit" /> directions request.
             </summary>
-            <param name="time">The arrival time to calculate directions for in UTC.</param>
+            <param name="arrivalTime">The arrival time to calculate directions for in UTC.</param>
             <returns>Returns this <see cref="T:Google.Maps.WebServices.Directions.DirectionsRequestOptions" /> for call chaining.</returns>
         </member>
         <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetDepartureTime(System.DateTime)">
+            <inheritdoc cref="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetDepartureTime(System.Int64)" />
+        </member>
+        <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetDepartureTime(System.DateTimeOffset)">
             <inheritdoc cref="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetDepartureTime(System.Int64)" />
         </member>
         <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetDepartureTime(System.Int64)">
@@ -2554,7 +2560,7 @@
             traffic model is supplied, then departure time must be specified.
             <para>Duration in traffic will only be returned if the departure time is specified.</para>
             </remarks>
-            <param name="time">The departure time to calculate directions for in UTC.</param>
+            <param name="departureTime">The departure time to calculate directions for in UTC.</param>
             <returns>Returns this <see cref="T:Google.Maps.WebServices.Directions.DirectionsRequestOptions" /> for call chaining.</returns>
         </member>
         <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetDepartureTimeNow">
