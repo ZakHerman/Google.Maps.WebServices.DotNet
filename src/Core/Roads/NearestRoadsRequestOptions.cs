@@ -22,7 +22,7 @@ namespace Google.Maps.WebServices.Roads
         /// Constructs an instance of the <see cref="NearestRoadsRequestOptions" /> class.
         /// </summary>
         /// <param name="points">The location points to process.</param>
-        internal NearestRoadsRequestOptions(IEnumerable<LatLng> points) : base(RoadsUrlHost, RoadsUrlPath)
+        internal NearestRoadsRequestOptions(IEnumerable<LatLngLiteral> points) : base(RoadsUrlHost, RoadsUrlPath)
         {
             if (points is null)
                 throw new ArgumentNullException(nameof(points));
@@ -30,7 +30,7 @@ namespace Google.Maps.WebServices.Roads
             SetPoints(points);
         }
 
-        internal NearestRoadsRequestOptions SetPoints(IEnumerable<LatLng> points)
+        internal NearestRoadsRequestOptions SetPoints(IEnumerable<LatLngLiteral> points)
         {
             return SetQueryParameter("points", string.Join("|", points));
         }

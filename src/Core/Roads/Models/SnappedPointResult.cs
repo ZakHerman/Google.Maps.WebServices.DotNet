@@ -10,10 +10,10 @@ namespace Google.Maps.WebServices.Roads
     public class SnappedPointResult
     {
         /// <summary>
-        /// A <see cref="LatLng" /> representing the snapped location.
+        /// A <see cref="LatLngLiteral" /> representing the snapped location.
         /// </summary>
         [JsonProperty("location")]
-        public LatLng Location { get; set; }
+        public LatLngLiteral Location { get; set; }
 
         /// <summary>
         /// The index of the corresponding value in the original request.
@@ -23,7 +23,7 @@ namespace Google.Maps.WebServices.Roads
         /// interpolate is set to true, then it's possible that the response will contain more
         /// coordinates than the request. Interpolated values will not have an originalIndex. These
         /// values are indexed from 0, so a point with an originalIndex of 4 will be the snapped
-        /// value of the 5th <see cref="LatLng" /> passed to the path parameter.
+        /// value of the 5th <see cref="LatLngLiteral" /> passed to the path parameter.
         /// </remarks>
         [JsonProperty("originalIndex")]
         public int? OriginalIndex { get; set; }

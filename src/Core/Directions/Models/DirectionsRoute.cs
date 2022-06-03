@@ -9,19 +9,12 @@ using Newtonsoft.Json;
 namespace Google.Maps.WebServices.Directions
 {
     /// <summary>
-    /// A Directions API result. When the Directions API returns results, it places them within a
-    /// routes array. Even if the service returns no results (such as if the origin and/or
-    /// destination doesn't exist) it still returns an empty routes array.
+    /// A route consists of nested legs and steps.
     /// </summary>
-    /// <remarks>
-    /// See <see
-    /// href="https://developers.google.com/maps/documentation/directions/get-directions#Routes">Routes</see>
-    /// for more detail.
-    /// </remarks>
     public class DirectionsRoute
     {
         /// <summary>
-        /// The viewport bounding box of the route.
+        /// Contains the viewport bounding box of the <see cref="OverviewPolyline" />.
         /// </summary>
         [JsonProperty("bounds")]
         public Bounds Bounds { get; set; }
@@ -33,18 +26,29 @@ namespace Google.Maps.WebServices.Directions
         public string Copyrights { get; set; }
 
         /// <summary>
-        /// Information about legs of the route, between locations within the route. A separate leg
+        /// The total fare (that is, the total ticket costs) on this route.
+        /// </summary>
+        /// <remarks>
+        /// This property is only returned for transit requests and only for routes where fare information is
+        /// available for all transit legs.
+        /// </remarks>
+        [JsonProperty("fare")]
+        public Fare Fare { get; set; }
+
+        /// <summary>
+        /// Information about legs of the route, between two locations within the given route. A separate leg
         /// will be present for each waypoint or destination specified.
         /// </summary>
         /// <remarks>A route with no waypoints will contain exactly one leg within the legs collection.</remarks>
         [JsonProperty("legs")]
-        public List<DirectionsLeg> Legs { get; private set; } = new List<DirectionsLeg>();
+        public List<DirectionsLeg> Legs { get; } = new List<DirectionsLeg>();
 
         /// <summary>
-        /// An approximate (smoothed) path of the resulting directions.
+        /// Contains an object that holds an encoded polyline representation of the route.
+        /// This polyline is an approximate (smoothed) path of the resulting directions.
         /// </summary>
         [JsonProperty("overview_polyline")]
-        public EncodedPolyline OverviewPolyline { get; set; }
+        public DirectionsPolyline OverviewPolyline { get; set; }
 
         /// <summary>
         /// A short textual description for the route, suitable for naming and disambiguating the
@@ -83,26 +87,6 @@ namespace Google.Maps.WebServices.Directions
                 sb.Append($", {Warnings.Count} {nameof(Warnings)}");
 
             return sb.Append(']').ToString();
-        }
-
-        internal static DirectionsRoute Merge(DirectionsRoute a, DirectionsRoute b)
-        {
-            if (a is null)
-                throw new ArgumentNullException(nameof(a));
-
-            if (b is null)
-                throw new ArgumentNullException(nameof(b));
-
-            return new DirectionsRoute
-            {
-                Bounds = Bounds.Merge(a.Bounds, b.Bounds),
-                Copyrights = a.Copyrights ?? b.Copyrights,
-                Legs = a.Legs.Concat(b.Legs).ToList(),
-                OverviewPolyline = EncodedPolyline.Merge(a.OverviewPolyline, b.OverviewPolyline),
-                Summary = a.Summary ?? b.Summary,
-                Warnings = a.Warnings.Concat(b.Warnings).ToList(),
-                WaypointOrder = a.WaypointOrder.Concat(b.WaypointOrder.Select(x => a.WaypointOrder.Max() + x + 1)).ToList()
-            };
         }
     }
 }

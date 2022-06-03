@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.2.2</Version>
+    <Version>0.3.0</Version>
     <PackageId>GoogleMaps.WebServices</PackageId>
   </PropertyGroup>
 
@@ -12,9 +12,9 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Polly" Version="7.2.2" />
+    <PackageReference Include="Polly" Version="7.2.3" />
     <PackageReference Include="Polly.Extensions.Http" Version="3.0.0" />
-    <PackageReference Include="StandardSocketsHttpHandler" Version="2.2.0.3" />
+    <PackageReference Include="StandardSocketsHttpHandler" Version="2.2.0.4" />
   </ItemGroup>
 
   <ItemGroup>

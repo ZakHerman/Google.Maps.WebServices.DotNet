@@ -35,7 +35,7 @@ namespace Google.Maps.WebServices.Directions
         /// The location of the last point of this step.
         /// </summary>
         [JsonProperty("end_location")]
-        public LatLng EndLocation { get; set; }
+        public LatLngLiteral EndLocation { get; set; }
 
         /// <summary>
         /// Formatted instructions for this step, presented as an HTML text string.
@@ -50,17 +50,17 @@ namespace Google.Maps.WebServices.Directions
         public string Maneuver { get; set; }
 
         /// <summary>
-        /// The path of this step.
+        /// A single points object that holds an encoded polyline representation of the step.
         /// </summary>
         /// <remarks>This <see cref="PolyLine" /> is an approximate (smoothed) path of the step.</remarks>
         [JsonProperty("polyline")]
-        public EncodedPolyline PolyLine { get; set; }
+        public DirectionsPolyline PolyLine { get; set; }
 
         /// <summary>
         /// The location of the starting point of this step.
         /// </summary>
         [JsonProperty("start_location")]
-        public LatLng StartLocation { get; set; }
+        public LatLngLiteral StartLocation { get; set; }
 
         /// <summary>
         /// Detailed directions for walking or driving steps in transit directions.
@@ -73,7 +73,13 @@ namespace Google.Maps.WebServices.Directions
         public List<DirectionsStep> Steps { get; } = new List<DirectionsStep>();
 
         /// <summary>
-        /// The travel mode of this step.
+        /// Details pertaining to this step if the travel mode is <see cref="Common.TravelMode.Transit" />.
+        /// </summary>
+        [JsonProperty("transit_details")]
+        public DirectionsTransitDetails TransitDetails { get; set; }
+
+        /// <summary>
+        /// The type of travel mode used.
         /// </summary>
         /// <remarks>
         /// See <a

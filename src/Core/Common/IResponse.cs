@@ -1,7 +1,7 @@
 ﻿namespace Google.Maps.WebServices.Common
 {
     /// <summary>
-    /// An interface to be implemented by class that handle a Google Maps Web Service response.
+    /// An interface to be implemented by a class that handle a Google Maps Web Service response.
     /// </summary>
     /// <typeparam name="T">The Google Maps Web Service result.</typeparam>
     public interface IResponse<out T>

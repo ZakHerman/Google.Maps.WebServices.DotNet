@@ -24,7 +24,7 @@ namespace Google.Maps.WebServices.Tests.Core.Roads
             // Arrange
             HttpClient httpClient = await _httpClientFixture.CreateHttpClientAsync("NearestRoadsResponse.json");
             var googleMapsClient = new GoogleMapsServiceClient("FAKE_KEY", httpClient);
-            List<LatLng> points = GetPath();
+            List<LatLngLiteral> points = GetPath();
 
             // Act
             GoogleMapsResponse<IEnumerable<SnappedPointResult>> response = await googleMapsClient.NearestRoadsAsync(points);
@@ -42,7 +42,7 @@ namespace Google.Maps.WebServices.Tests.Core.Roads
             // Arrange
             HttpClient httpClient = await _httpClientFixture.CreateHttpClientAsync("NearestRoadsResponse.json");
             var googleMapsClient = new GoogleMapsServiceClient("FAKE_KEY", httpClient);
-            List<LatLng> points = GetPath();
+            List<LatLngLiteral> points = GetPath();
 
             // Act
             GoogleMapsResponse<IEnumerable<SnappedPointResult>> response = await googleMapsClient.NearestRoadsAsync(points);
@@ -64,7 +64,7 @@ namespace Google.Maps.WebServices.Tests.Core.Roads
             // Arrange
             HttpClient httpClient = await _httpClientFixture.CreateHttpClientAsync("SnapToRoadsResponse.json");
             var googleMapsClient = new GoogleMapsServiceClient("FAKE_KEY", httpClient);
-            List<LatLng> path = GetPath();
+            List<LatLngLiteral> path = GetPath();
 
             // Act
             GoogleMapsResponse<IEnumerable<SnappedPointResult>> response = await googleMapsClient.SnapToRoadsAsync(path);
@@ -82,7 +82,7 @@ namespace Google.Maps.WebServices.Tests.Core.Roads
             // Arrange
             HttpClient httpClient = await _httpClientFixture.CreateHttpClientAsync("SnapToRoadsResponse.json");
             var googleMapsClient = new GoogleMapsServiceClient("FAKE_KEY", httpClient);
-            List<LatLng> path = GetPath();
+            List<LatLngLiteral> path = GetPath();
 
             // Act
             GoogleMapsResponse<IEnumerable<SnappedPointResult>> response = await googleMapsClient.SnapToRoadsAsync(path);
@@ -97,9 +97,9 @@ namespace Google.Maps.WebServices.Tests.Core.Roads
             Assert.Equal("ChIJoR7CemhNFmsRQB9QbW7qABM", results[0].PlaceId);
         }
 
-        private static List<LatLng> GetPath()
+        private static List<LatLngLiteral> GetPath()
         {
-            return new List<LatLng>
+            return new List<LatLngLiteral>
             {
                 new(-35.27801, 149.12958),
                 new(-35.28032, 149.12907),

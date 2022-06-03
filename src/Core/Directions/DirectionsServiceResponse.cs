@@ -22,10 +22,13 @@ namespace Google.Maps.WebServices.Directions
         public ApiResponseStatus ResponseStatus { get; set; }
 
         /// <inheritdoc />
-        public DirectionsResult Result => new DirectionsResult(GeocodedWaypoints, Routes);
+        public DirectionsResult Result => new DirectionsResult(AvailableTravelModes, GeocodedWaypoints, Routes);
+
+        [JsonProperty("available_travel_modes")]
+        private List<TravelMode> AvailableTravelModes { get; } = new List<TravelMode>();
 
         [JsonProperty("geocoded_waypoints")]
-        private List<GeocodedWaypoint> GeocodedWaypoints { get; } = new List<GeocodedWaypoint>();
+        private List<DirectionsGeocodedWaypoint> GeocodedWaypoints { get; } = new List<DirectionsGeocodedWaypoint>();
 
         [JsonProperty("routes")]
         private List<DirectionsRoute> Routes { get; } = new List<DirectionsRoute>();

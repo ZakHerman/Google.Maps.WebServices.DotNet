@@ -12,8 +12,8 @@ namespace Google.Maps.WebServices.Tests.Core.Common.Models
             // Arrange
             Bounds emptyBoundsOne = new();
             Bounds emptyBoundsTwo = new();
-            Bounds missingSouthWestBounds = new() { NorthEast = new LatLng() };
-            Bounds missingNorthEastBounds = new() { SouthWest = new LatLng() };
+            Bounds missingSouthWestBounds = new() { NorthEast = new LatLngLiteral() };
+            Bounds missingNorthEastBounds = new() { SouthWest = new LatLngLiteral() };
 
             // Assert
             Assert.Throws<ArgumentException>(() => Bounds.Merge(null, null));
@@ -28,8 +28,8 @@ namespace Google.Maps.WebServices.Tests.Core.Common.Models
             // Arrange
             Bounds boundsOne = GetBoundsOne();
             Bounds boundsTwo = GetBoundsTwo();
-            Bounds missingSouthWestBounds = new() { NorthEast = new LatLng() };
-            Bounds missingNorthEastBounds = new() { SouthWest = new LatLng() };
+            Bounds missingSouthWestBounds = new() { NorthEast = new LatLngLiteral() };
+            Bounds missingNorthEastBounds = new() { SouthWest = new LatLngLiteral() };
 
             // Act
             Bounds combinedBounds = Bounds.Merge(new Bounds(), boundsTwo);
@@ -75,12 +75,12 @@ namespace Google.Maps.WebServices.Tests.Core.Common.Models
         {
             return new Bounds
             {
-                NorthEast = new LatLng
+                NorthEast = new LatLngLiteral
                 {
                     Latitude = -50,
                     Longitude = 100
                 },
-                SouthWest = new LatLng
+                SouthWest = new LatLngLiteral
                 {
                     Latitude = 1,
                     Longitude = 179
@@ -92,12 +92,12 @@ namespace Google.Maps.WebServices.Tests.Core.Common.Models
         {
             return new Bounds
             {
-                NorthEast = new LatLng
+                NorthEast = new LatLngLiteral
                 {
                     Latitude = -51,
                     Longitude = 101
                 },
-                SouthWest = new LatLng
+                SouthWest = new LatLngLiteral
                 {
                     Latitude = 0,
                     Longitude = 180

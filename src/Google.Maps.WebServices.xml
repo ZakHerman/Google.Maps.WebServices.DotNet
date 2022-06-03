@@ -209,7 +209,7 @@
         </member>
         <member name="T:Google.Maps.WebServices.Common.IResponse`1">
             <summary>
-            An interface to be implemented by class that handle a Google Maps Web Service response.
+            An interface to be implemented by a class that handle a Google Maps Web Service response.
             </summary>
             <typeparam name="T">The Google Maps Web Service result.</typeparam>
         </member>
@@ -269,7 +269,7 @@
         </member>
         <member name="T:Google.Maps.WebServices.Common.Bounds">
             <summary>
-            The northeast and southwest points that delineate the outer bounds of a map.
+            A rectangle in geographical coordinates from points at the southwest and northeast corners.
             </summary>
         </member>
         <member name="P:Google.Maps.WebServices.Common.Bounds.NorthEast">
@@ -331,24 +331,6 @@
             </summary>
         </member>
         <member name="M:Google.Maps.WebServices.Common.Duration.ToString">
-            <inheritdoc />
-        </member>
-        <member name="T:Google.Maps.WebServices.Common.EncodedPolyline">
-            <summary>
-            Encoded polylines are used by the API to represent paths.
-            </summary>
-            <remarks>
-            See <see
-            href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm">Encoded
-            Polyline Algorithm</see> for more detail on the protocol.
-            </remarks>
-        </member>
-        <member name="P:Google.Maps.WebServices.Common.EncodedPolyline.Points">
-            <summary>
-            A string representation of a path, encoded with the Polyline Algorithm.
-            </summary>
-        </member>
-        <member name="M:Google.Maps.WebServices.Common.EncodedPolyline.ToString">
             <inheritdoc />
         </member>
         <member name="T:Google.Maps.WebServices.Common.AddressComponentType">
@@ -1684,7 +1666,7 @@
         </member>
         <member name="T:Google.Maps.WebServices.Common.GeocodedWaypointStatus">
             <summary>
-            The status result for a single <see cref="T:Google.Maps.WebServices.Common.GeocodedWaypoint" />.
+            The status result for a single <see cref="T:Google.Maps.WebServices.Directions.DirectionsGeocodedWaypoint" />.
             </summary>
             <remarks>
             See <a
@@ -2317,46 +2299,6 @@
             </summary>
             <remarks>Textual distances are returned using miles and feet.</remarks>
         </member>
-        <member name="T:Google.Maps.WebServices.Common.GeocodedWaypoint">
-            <summary>
-            A point in a Directions API response; either the origin, one of the requested waypoints, or
-            the destination.
-            </summary>
-            <remarks>
-            See <a
-            href="https://developers.google.com/maps/documentation/directions/get-directions#GeocodedWaypoints">Geocoded
-            Waypoints</a> for more detail.
-            </remarks>
-        </member>
-        <member name="P:Google.Maps.WebServices.Common.GeocodedWaypoint.GeoCoderStatus">
-            <summary>
-            The status code resulting from the geocoding operation for this waypoint.
-            </summary>
-        </member>
-        <member name="P:Google.Maps.WebServices.Common.GeocodedWaypoint.PartialMatch">
-            <summary>
-            Indicates that the geocoder did not return an exact match for the original request,
-            though it was able to match part of the requested address.
-            </summary>
-        </member>
-        <member name="P:Google.Maps.WebServices.Common.GeocodedWaypoint.PlaceId">
-            <summary>
-            A unique identifier for this waypoint that can be used with other Google APIs.
-            </summary>
-            <remarks>
-            See <a
-            href="https://developers.google.com/maps/documentation/places/web-service/place-id">Place
-            IDs</a> for more detail.
-            </remarks>
-        </member>
-        <member name="P:Google.Maps.WebServices.Common.GeocodedWaypoint.Types">
-            <summary>
-            The address types of the geocoding result used for calculating directions.
-            </summary>
-        </member>
-        <member name="M:Google.Maps.WebServices.Common.GeocodedWaypoint.ToString">
-            <inheritdoc />
-        </member>
         <member name="T:Google.Maps.WebServices.Common.IUrlValue">
             <summary>
             Interface implemented by classes to ensure valid request strings.
@@ -2368,52 +2310,52 @@
             </summary>
             <returns>The object, represented as a URI value (not URL encoded).</returns>
         </member>
-        <member name="T:Google.Maps.WebServices.Common.LatLng">
+        <member name="T:Google.Maps.WebServices.Common.LatLngLiteral">
             <summary>
-            A place on Earth, represented by a latitude/longitude pair.
+            An object describing a specific location with latitude and longitude in decimal degrees.
             </summary>
         </member>
-        <member name="M:Google.Maps.WebServices.Common.LatLng.#ctor">
+        <member name="M:Google.Maps.WebServices.Common.LatLngLiteral.#ctor">
             <summary>
             Serialization constructor.
             </summary>
         </member>
-        <member name="M:Google.Maps.WebServices.Common.LatLng.#ctor(System.Double,System.Double)">
+        <member name="M:Google.Maps.WebServices.Common.LatLngLiteral.#ctor(System.Double,System.Double)">
             <summary>
             Constructs a location with a latitude/longitude pair.
             </summary>
             <param name="latitude">The latitude of this location.</param>
             <param name="longitude">The longitude of this location.</param>
         </member>
-        <member name="P:Google.Maps.WebServices.Common.LatLng.Latitude">
+        <member name="P:Google.Maps.WebServices.Common.LatLngLiteral.Latitude">
             <summary>
-            The latitude of this location.
+            Latitude in decimal degrees.
             </summary>
         </member>
-        <member name="P:Google.Maps.WebServices.Common.LatLng.Longitude">
+        <member name="P:Google.Maps.WebServices.Common.LatLngLiteral.Longitude">
             <summary>
-            The longitude of this location.
+            Longitude in decimal degrees.
             </summary>
         </member>
-        <member name="P:Google.Maps.WebServices.Common.LatLng.RoadsLatitude">
+        <member name="P:Google.Maps.WebServices.Common.LatLngLiteral.RoadsLatitude">
             <summary>
-            The latitude of this location.
+            Latitude in decimal degrees.
             </summary>
             <remarks>A write only property for when JSON field is "latitude".</remarks>
         </member>
-        <member name="P:Google.Maps.WebServices.Common.LatLng.RoadsLongitude">
+        <member name="P:Google.Maps.WebServices.Common.LatLngLiteral.RoadsLongitude">
             <summary>
-            The longitude of this location.
+            Longitude in decimal degrees.
             </summary>
             <remarks>A write only property for when JSON field is "longitude".</remarks>
         </member>
-        <member name="M:Google.Maps.WebServices.Common.LatLng.Equals(Google.Maps.WebServices.Common.LatLng)">
+        <member name="M:Google.Maps.WebServices.Common.LatLngLiteral.Equals(Google.Maps.WebServices.Common.LatLngLiteral)">
             <inheritdoc />
         </member>
-        <member name="M:Google.Maps.WebServices.Common.LatLng.ToString">
+        <member name="M:Google.Maps.WebServices.Common.LatLngLiteral.ToString">
             <inheritdoc />
         </member>
-        <member name="M:Google.Maps.WebServices.Common.LatLng.ToUriValue">
+        <member name="M:Google.Maps.WebServices.Common.LatLngLiteral.ToUriValue">
             <inheritdoc />
         </member>
         <member name="T:Google.Maps.WebServices.Common.PlusCode">
@@ -2450,6 +2392,29 @@
         <member name="M:Google.Maps.WebServices.Common.PlusCode.ToString">
             <inheritdoc />
         </member>
+        <member name="T:Google.Maps.WebServices.Common.TimeZoneTextValueObject">
+            <summary>
+            An object containing Unix time, a time zone, and its formatted text representation.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Common.TimeZoneTextValueObject.Text">
+            <summary>
+            The time specified as a string in the time zone.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Common.TimeZoneTextValueObject.TimeZone">
+            <summary>
+            The time zone. 
+            </summary>
+            <remarks>
+            The value is the name of the time zone as defined in the IANA Time Zone Database.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.Common.TimeZoneTextValueObject.Value">
+            <summary>
+            The time specified as Unix time, or seconds since midnight, January 1, 1970 UTC.
+            </summary>
+        </member>
         <member name="T:Google.Maps.WebServices.Common.Waypoint">
             <summary>
             Alter a route by directing it through the specified location(s).
@@ -2483,6 +2448,21 @@
             A request builder class for the directions web service.
             </summary>
         </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsRequestOptions.Destination">
+            <summary>
+            The destination of the the route.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsRequestOptions.Origin">
+            <summary>
+            The origin of the route.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsRequestOptions.Waypoints">
+            <summary>
+            The waypoints of the route.
+            </summary>
+        </member>
         <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.#ctor">
             <summary>
             Constructs an instance of the <see cref="T:Google.Maps.WebServices.Directions.DirectionsRequestOptions" /> class.
@@ -2492,7 +2472,7 @@
             <summary>
             Constructs an instance of the <see cref="T:Google.Maps.WebServices.Directions.DirectionsRequestOptions" /> class.
             </summary>
-            <param name="uri"></param>
+            <param name="uri">The URI.</param>
         </member>
         <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.#ctor(System.String,System.String)">
             <summary>
@@ -2684,7 +2664,7 @@
             <param name="waypoints">The waypoints to add to this directions request.</param>
             <returns>Returns this <see cref="T:Google.Maps.WebServices.Directions.DirectionsRequestOptions" /> for call chaining.</returns>
         </member>
-        <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetWaypoints(System.Collections.Generic.IEnumerable{Google.Maps.WebServices.Common.LatLng})">
+        <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetWaypoints(System.Collections.Generic.IEnumerable{Google.Maps.WebServices.Common.LatLngLiteral})">
             <summary>
             Specifies the list of waypoints as latitude/longitude locations.
             </summary>
@@ -2712,6 +2692,22 @@
             </remarks>
             <param name="origin">The starting location for the Directions request.</param>
             <returns>Returns this <see cref="T:Google.Maps.WebServices.Directions.DirectionsRequestOptions" /> for call chaining.</returns>
+        </member>
+        <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.BuildUri(System.String,System.String)">
+            <summary>
+            Gets the directions API request URI.
+            </summary>
+            <param name="origin">
+            The place ID, address, textual latitude/longitude value, <see cref="P:Google.Maps.WebServices.Common.PlusCode.GlobalCode"
+            /> or <see cref="P:Google.Maps.WebServices.Common.PlusCode.CompoundCode" /> value to use as a starting location to
+            calculate directions.
+            </param>
+            <param name="destination">
+            The place ID, address, textual latitude/longitude value, <see cref="P:Google.Maps.WebServices.Common.PlusCode.GlobalCode"
+            /> or <see cref="P:Google.Maps.WebServices.Common.PlusCode.CompoundCode" /> value to use as an ending location to
+            calculate directions.
+            </param>
+            <returns>The <see cref="T:System.Uri" /> of the request.</returns>
         </member>
         <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.ValidateRequest">
             <inheritdoc />
@@ -2761,16 +2757,16 @@
             and <paramref name="destination" />.
             </returns>
         </member>
-        <member name="M:Google.Maps.WebServices.Directions.DirectionsService.GetDirectionsAsync(Google.Maps.WebServices.GoogleMapsServiceClient,Google.Maps.WebServices.Common.LatLng,Google.Maps.WebServices.Common.LatLng,Google.Maps.WebServices.Directions.DirectionsRequestOptions,System.Threading.CancellationToken)">
+        <member name="M:Google.Maps.WebServices.Directions.DirectionsService.GetDirectionsAsync(Google.Maps.WebServices.GoogleMapsServiceClient,Google.Maps.WebServices.Common.LatLngLiteral,Google.Maps.WebServices.Common.LatLngLiteral,Google.Maps.WebServices.Directions.DirectionsRequestOptions,System.Threading.CancellationToken)">
             <inheritdoc cref="M:Google.Maps.WebServices.Directions.DirectionsService.GetDirectionsAsync(Google.Maps.WebServices.GoogleMapsServiceClient,System.String,System.String,Google.Maps.WebServices.Directions.DirectionsRequestOptions,System.Threading.CancellationToken)" path="//*[not(self::param)]" />
             <param name="client">
             The instance of <see cref="T:Google.Maps.WebServices.GoogleMapsServiceClient" /> used to send the request.
             </param>
             <param name="origin">
-            The <see cref="T:Google.Maps.WebServices.Common.LatLng" /> value to use as a starting location to calculate directions.
+            The <see cref="T:Google.Maps.WebServices.Common.LatLngLiteral" /> value to use as a starting location to calculate directions.
             </param>
             <param name="destination">
-            The <see cref="T:Google.Maps.WebServices.Common.LatLng" /> value to use as an ending location to calculate directions.
+            The <see cref="T:Google.Maps.WebServices.Common.LatLngLiteral" /> value to use as an ending location to calculate directions.
             </param>
             <param name="options">
             A <see cref="T:Google.Maps.WebServices.Directions.DirectionsRequestOptions" /> used to set additional request query parameters.
@@ -2815,6 +2811,55 @@
         <member name="P:Google.Maps.WebServices.Directions.DirectionsServiceResponse.Result">
             <inheritdoc />
         </member>
+        <member name="T:Google.Maps.WebServices.Directions.DirectionsGeocodedWaypoint">
+            <summary>
+            A point in a Directions API response; either the origin, one of the requested waypoints, or
+            the destination.
+            </summary>
+            <remarks>
+            See <a
+            href="https://developers.google.com/maps/documentation/directions/get-directions#GeocodedWaypoints">Geocoded
+            Waypoints</a> for more detail.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsGeocodedWaypoint.GeocoderStatus">
+            <summary>
+            Indicates the status code resulting from the geocoding operation. 
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsGeocodedWaypoint.PartialMatch">
+            <summary>
+            Indicates that the geocoder did not return an exact match for the original request,
+            though it was able to match part of the requested address.
+            </summary>
+            <remarks>
+            Partial matches most often occur for street addresses that do not exist within the
+            locality you pass in the request. Partial matches may also be returned when a request
+            matches two or more locations in the same locality. 
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsGeocodedWaypoint.PlaceId">
+            <summary>
+            A unique identifier for this waypoint that can be used with other Google APIs.
+            </summary>
+            <remarks>
+            See <a
+            href="https://developers.google.com/maps/documentation/places/web-service/place-id">Place
+            IDs</a> for more detail.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsGeocodedWaypoint.Types">
+            <summary>
+            The address types of the geocoding result used for calculating directions.
+            </summary>
+            <remarks>
+            An empty collection of address types indicates there are no known types for the
+            particular address component.
+            </remarks>
+        </member>
+        <member name="M:Google.Maps.WebServices.Directions.DirectionsGeocodedWaypoint.ToString">
+            <inheritdoc />
+        </member>
         <member name="T:Google.Maps.WebServices.Directions.DirectionsLeg">
             <summary>
             A component of a Directions API result.
@@ -2823,6 +2868,22 @@
             See <see
             href="https://developers.google.com/maps/documentation/directions/get-directions#Legs">Legs
             documentation</see> for more detail.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsLeg.ArrivalTime">
+            <summary>
+            The estimated time of arrival for this leg.
+            </summary>
+            <remarks>
+            This property is only returned for transit directions.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsLeg.DepartureTime">
+            <summary>
+            The estimated time of departure for this leg.
+            </summary>
+            <remarks>
+            This property is only returned for transit directions.
             </remarks>
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsLeg.Distance">
@@ -2859,8 +2920,8 @@
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsLeg.EndAddress">
             <summary>
-            The human-readable address (typically a street address) reflecting the end location of
-            this leg.
+            The human-readable address (typically a street address) from reverse geocoding
+            the <see cref="P:Google.Maps.WebServices.Directions.DirectionsLeg.EndLocation" /> of this leg.
             </summary>
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsLeg.EndLocation">
@@ -2869,15 +2930,15 @@
             </summary>
             <remarks>
             Because the Directions API calculates directions between locations by using the nearest
-            transportation option (usually a road) at the start and end points, EndLocation may be
-            different than the provided destination of this leg if, for example, a road is not near
-            the destination.
+            transportation option (usually a road) at the start and end points,
+            <see cref="P:Google.Maps.WebServices.Directions.DirectionsLeg.EndLocation" /> may be different than the provided destination of this leg
+            if, for example, a road is not near the destination.
             </remarks>
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsLeg.StartAddress">
             <summary>
-            The human-readable address (typically a street address) reflecting the start location of
-            this leg.
+            The human-readable address (typically a street address) resulting from reverse geocoding
+            the <see cref="P:Google.Maps.WebServices.Directions.DirectionsLeg.StartLocation" /> of this leg.
             </summary>
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsLeg.StartLocation">
@@ -2896,13 +2957,36 @@
             of the journey.
             </summary>
         </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsLeg.ViaWaypoints">
+            <summary>
+            The locations of via waypoints along this leg.
+            </summary>
+        </member>
         <member name="M:Google.Maps.WebServices.Directions.DirectionsLeg.GetPath">
             <summary>
-            Decodes the <see cref="T:Google.Maps.WebServices.Common.EncodedPolyline" /> of <see cref="P:Google.Maps.WebServices.Directions.DirectionsLeg.Steps" />.
+            Decodes the <see cref="T:Google.Maps.WebServices.Directions.DirectionsPolyline" /> of <see cref="P:Google.Maps.WebServices.Directions.DirectionsLeg.Steps" />.
             </summary>
-            <returns>A collection of <see cref="T:Google.Maps.WebServices.Common.LatLng" />.</returns>
+            <returns>A collection of <see cref="T:Google.Maps.WebServices.Common.LatLngLiteral" />.</returns>
         </member>
         <member name="M:Google.Maps.WebServices.Directions.DirectionsLeg.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Google.Maps.WebServices.Directions.DirectionsPolyline">
+            <summary>
+            Contains an object that holds an encoded polyline representation of the route.
+            </summary>
+            <remarks>
+            See <see
+            href="https://developers.google.com/maps/documentation/directions/get-directions#DirectionsPolyline">Encoded
+            DirectionsPolyline</see> for more detail.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsPolyline.Points">
+            <summary>
+            A single string representation of the polyline.
+            </summary>
+        </member>
+        <member name="M:Google.Maps.WebServices.Directions.DirectionsPolyline.ToString">
             <inheritdoc />
         </member>
         <member name="T:Google.Maps.WebServices.Directions.DirectionsResult">
@@ -2910,8 +2994,8 @@
             <see cref="T:Google.Maps.WebServices.Directions.DirectionsResult" /> represents a result from the Google Maps Directions Web Service.
             </summary>
             <remarks>
-            See <see href="https://developers.google.com/maps/documentation/directions/overview">
-            Directions API</see> for more detail.
+            See <see href="https://developers.google.com/maps/documentation/directions/get-directions#DirectionsResponse">
+            DirectionsResponse</see> for more detail.
             </remarks>
         </member>
         <member name="M:Google.Maps.WebServices.Directions.DirectionsResult.#ctor">
@@ -2919,12 +3003,26 @@
             Serialization constructor.
             </summary>
         </member>
-        <member name="M:Google.Maps.WebServices.Directions.DirectionsResult.#ctor(System.Collections.Generic.List{Google.Maps.WebServices.Common.GeocodedWaypoint},System.Collections.Generic.List{Google.Maps.WebServices.Directions.DirectionsRoute})">
+        <member name="M:Google.Maps.WebServices.Directions.DirectionsResult.#ctor(System.Collections.Generic.List{Google.Maps.WebServices.Common.TravelMode},System.Collections.Generic.List{Google.Maps.WebServices.Directions.DirectionsGeocodedWaypoint},System.Collections.Generic.List{Google.Maps.WebServices.Directions.DirectionsRoute})">
             <summary>
             Constructs an instance of the <see cref="T:Google.Maps.WebServices.Directions.DirectionsResult" /> class.
             </summary>
-            <param name="geocodedWaypoints">A collection of <see cref="T:Google.Maps.WebServices.Common.GeocodedWaypoint" />.</param>
+            <param name="availableTravelModes">A collection of <see cref="T:Google.Maps.WebServices.Common.TravelMode" />.</param>
+            <param name="geocodedWaypoints">A collection of <see cref="T:Google.Maps.WebServices.Directions.DirectionsGeocodedWaypoint" />.</param>
             <param name="routes">A collection of <see cref="T:Google.Maps.WebServices.Directions.DirectionsRoute" />.</param>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsResult.AvailableTravelModes">
+            <summary>
+            Contains a collection of available travel modes.
+            </summary>
+            <remarks>
+            This field is returned when a request specifies a travel mode and gets no results.<br/>
+            The collection contains the available travel modes in the countries of the given set of waypoints.<br/>
+            This field is not returned if one or more of the waypoints are 'via waypoints'.<br/>
+            See <see
+            href="https://developers.google.com/maps/documentation/directions/get-directions#TravelMode">Geocoded
+            Waypoints</see> for more detail.
+            </remarks>
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsResult.GeocodedWaypoints">
             <summary>
@@ -2932,7 +3030,7 @@
             </summary>
             <remarks>
             See <see
-            href="https://developers.google.com/maps/documentation/directions/get-directions#GeocodedWaypoints">Geocoded
+            href="https://developers.google.com/maps/documentation/directions/get-directions#DirectionsGeocodedWaypoint">Geocoded
             Waypoints</see> for more detail.
             </remarks>
         </member>
@@ -2948,19 +3046,12 @@
         </member>
         <member name="T:Google.Maps.WebServices.Directions.DirectionsRoute">
             <summary>
-            A Directions API result. When the Directions API returns results, it places them within a
-            routes array. Even if the service returns no results (such as if the origin and/or
-            destination doesn't exist) it still returns an empty routes array.
+            A route consists of nested legs and steps.
             </summary>
-            <remarks>
-            See <see
-            href="https://developers.google.com/maps/documentation/directions/get-directions#Routes">Routes</see>
-            for more detail.
-            </remarks>
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsRoute.Bounds">
             <summary>
-            The viewport bounding box of the route.
+            Contains the viewport bounding box of the <see cref="P:Google.Maps.WebServices.Directions.DirectionsRoute.OverviewPolyline" />.
             </summary>
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsRoute.Copyrights">
@@ -2968,16 +3059,26 @@
             Copyrights text to be displayed for this route.
             </summary>
         </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsRoute.Fare">
+            <summary>
+            The total fare (that is, the total ticket costs) on this route.
+            </summary>
+            <remarks>
+            This property is only returned for transit requests and only for routes where fare information is
+            available for all transit legs.
+            </remarks>
+        </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsRoute.Legs">
             <summary>
-            Information about legs of the route, between locations within the route. A separate leg
+            Information about legs of the route, between two locations within the given route. A separate leg
             will be present for each waypoint or destination specified.
             </summary>
             <remarks>A route with no waypoints will contain exactly one leg within the legs collection.</remarks>
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsRoute.OverviewPolyline">
             <summary>
-            An approximate (smoothed) path of the resulting directions.
+            Contains an object that holds an encoded polyline representation of the route.
+            This polyline is an approximate (smoothed) path of the resulting directions.
             </summary>
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsRoute.Summary">
@@ -3044,7 +3145,7 @@
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsStep.PolyLine">
             <summary>
-            The path of this step.
+            A single points object that holds an encoded polyline representation of the step.
             </summary>
             <remarks>This <see cref="P:Google.Maps.WebServices.Directions.DirectionsStep.PolyLine" /> is an approximate (smoothed) path of the step.</remarks>
         </member>
@@ -3062,9 +3163,14 @@
             cref="F:Google.Maps.WebServices.Common.TravelMode.Transit" />.
             </remarks>
         </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsStep.TransitDetails">
+            <summary>
+            Details pertaining to this step if the travel mode is <see cref="F:Google.Maps.WebServices.Common.TravelMode.Transit" />.
+            </summary>
+        </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsStep.TravelMode">
             <summary>
-            The travel mode of this step.
+            The type of travel mode used.
             </summary>
             <remarks>
             See <a
@@ -3074,6 +3180,328 @@
         </member>
         <member name="M:Google.Maps.WebServices.Directions.DirectionsStep.ToString">
             <inheritdoc />
+        </member>
+        <member name="T:Google.Maps.WebServices.Directions.DirectionsTransitAgency">
+            <summary>
+            The transit agency.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitAgency.Name">
+            <summary>
+            The name of this transit agency.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitAgency.Phone">
+            <summary>
+            The transit agency's phone number.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitAgency.Url">
+            <summary>
+            The transit agency's URL.
+            </summary>
+        </member>
+        <member name="T:Google.Maps.WebServices.Directions.DirectionsTransitDetails">
+            <summary>
+            Additional information that is not relevant for other modes of transportation.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitDetails.ArrivalStop">
+            <summary>
+            The arrival transit stop.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitDetails.ArrivalTime">
+            <summary>
+            The arrival time of the transit stop.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitDetails.DepartureStop">
+            <summary>
+            The departure transit stop.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitDetails.DepartureTime">
+            <summary>
+            The departure time of the transit stop.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitDetails.HeadSign">
+            <summary>
+            Specifies the direction in which to travel on this line, as it is marked on the vehicle or at the departure stop.
+            </summary>
+            <remarks>
+            This will often be the terminus station.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitDetails.HeadWay">
+            <summary>
+            Specifies the expected number of seconds between departures from the same stop at this time.
+            </summary>
+            <remarks>
+            This will often be the terminus station.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitDetails.Line">
+            <summary>
+            Contains information about the transit line used in this step.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitDetails.NumberOfStops">
+            <summary>
+            The number of stops from the departure to the arrival stop.
+            </summary>
+            <remarks>
+            This includes the arrival stop, but not the departure stop.
+            For example, if your directions involve leaving from Stop A,
+            passing through stops B and C, and arriving at stop D,
+            num_stops will return 3.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitDetails.TripName">
+            <summary>
+            The text that appears in schedules and sign boards to identify
+            a transit trip to passengers.
+            </summary>
+            <remarks>
+            The text should uniquely identify a trip within a service day.
+            For example, "538" is the trip_short_name of the Amtrak train
+            that leaves San Jose, CA at 15:10 on weekdays to Sacramento, CA.
+            </remarks>
+        </member>
+        <member name="T:Google.Maps.WebServices.Directions.DirectionsTransitLine">
+            <summary>
+            The transit line information.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitLine.Agencies">
+            <summary>
+            The transit agency (or agencies) that operates this transit line.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitLine.Color">
+            <summary>
+            The color commonly used in signage for this line.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitLine.Icon">
+            <summary>
+            The URL for the icon associated with this line.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitLine.Name">
+            <summary>
+            The full name of this transit line.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitLine.ShortName">
+            <summary>
+            The short name of this transit line.
+            </summary>
+            <remarks>
+            This will normally be a line number, such as "M7" or "355".
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitLine.TextColor">
+            <summary>
+            The color commonly used in signage for this line.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitLine.Url">
+            <summary>
+            The URL for this transit line as provided by the transit agency.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitLine.Vehicle">
+            <summary>
+            The type of vehicle that operates on this transit line.
+            </summary>
+        </member>
+        <member name="T:Google.Maps.WebServices.Directions.DirectionsTransitStop">
+            <summary>
+            A transit stop.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitStop.Location">
+            <summary>
+            The location of the stop.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitStop.Name">
+            <summary>
+            The name of the transit stop.
+            </summary>
+        </member>
+        <member name="T:Google.Maps.WebServices.Directions.DirectionsTransitVehicle">
+            <summary>
+            Transit vehicle.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitVehicle.Icon">
+            <summary>
+            The URL for an icon associated with this vehicle type.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitVehicle.LocalIcon">
+            <summary>
+            The URL for the icon associated with this vehicle type, based on the local transport signage.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitVehicle.Name">
+            <summary>
+            The name of this vehicle, capitalized.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsTransitVehicle.Type">
+            <summary>
+            The type of vehicle used.
+            </summary>
+        </member>
+        <member name="T:Google.Maps.WebServices.Directions.DirectionsViaWaypoint">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsViaWaypoint.Location">
+            <summary>
+            The location of the waypoint.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsViaWaypoint.StepIndex">
+            <summary>
+            The index of the step containing the waypoint.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.DirectionsViaWaypoint.StepInterpolation">
+            <summary>
+            The position of the waypoint along the step's polyline, expressed as a ratio from 0 to 1.
+            </summary>
+        </member>
+        <member name="T:Google.Maps.WebServices.Directions.TransitVehicleType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.Unknown">
+            <summary>
+            Indicates an unknown error.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.Bus">
+            <summary>
+            A bus.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.CableCar">
+            <summary>
+            A vehicle that operates on a cable, usually on the ground.
+            </summary>
+            <remarks>
+            Aerial cable cars may be of the type <see cref="F:Google.Maps.WebServices.Directions.TransitVehicleType.GondolaLift"/>.
+            </remarks>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.CommuterTrain">
+            <summary>
+            Commuter rail.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.Ferry">
+            <summary>
+            A ferry.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.Funicular">
+            <summary>
+            A vehicle that is pulled up a steep incline by a cable.
+            </summary>
+            <remarks>
+            A Funicular typically consists of two cars, with each car acting as a counterweight for the other.
+            </remarks>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.GondolaLift">
+            <summary>
+            An aerial cable car.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.HeavyRail">
+            <summary>
+            Heavy rail.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.HighSpeedTrain">
+            <summary>
+            High speed train.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.IntercityBus">
+            <summary>
+            Intercity bus.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.LongDistanceTrain">
+            <summary>
+            Long distance train.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.MetroRail">
+            <summary>
+            Light rail transit.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.Monorail">
+            <summary>
+            Monorail.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.Other">
+            <summary>
+            All other vehicles will return this type.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.Rail">
+            <summary>
+            Rail.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.ShareTaxi">
+            <summary>
+            Share taxi is a kind of bus with the ability to drop off and pick up passengers anywhere on its route.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.Subway">
+            <summary>
+            Underground light rail.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.Tram">
+            <summary>
+            Above ground light rail.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.Directions.TransitVehicleType.Trolleybus">
+            <summary>
+            Trolleybus.
+            </summary>
+        </member>
+        <member name="T:Google.Maps.WebServices.Directions.Fare">
+            <summary>
+            The total fare for the route.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.Fare.Currency">
+            <summary>
+            An ISO 4217 currency code indicating the currency that the amount is expressed in.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.Fare.Text">
+            <summary>
+            The total fare amount, formatted in the requested language.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Directions.Fare.Value">
+            <summary>
+            The total fare amount, in the currency specified.
+            </summary>
         </member>
         <member name="T:Google.Maps.WebServices.DistanceMatrix.DistanceMatrixRequestOptions">
             <summary>
@@ -3441,7 +3869,7 @@
             Constructs an instance of the <see cref="T:Google.Maps.WebServices.Geocoding.GeocodingRequestOptions" /> class.
             </summary>
         </member>
-        <member name="M:Google.Maps.WebServices.Geocoding.GeocodingRequestOptions.#ctor(Google.Maps.WebServices.Common.LatLng)">
+        <member name="M:Google.Maps.WebServices.Geocoding.GeocodingRequestOptions.#ctor(Google.Maps.WebServices.Common.LatLngLiteral)">
             <summary>
             Constructs an instance of the <see cref="T:Google.Maps.WebServices.Geocoding.GeocodingRequestOptions" /> class.
             </summary>
@@ -3465,7 +3893,7 @@
             </summary>
             <param name="componentFilters">The component filters.</param>
         </member>
-        <member name="M:Google.Maps.WebServices.Geocoding.GeocodingRequestOptions.SetBounds(Google.Maps.WebServices.Common.LatLng,Google.Maps.WebServices.Common.LatLng)">
+        <member name="M:Google.Maps.WebServices.Geocoding.GeocodingRequestOptions.SetBounds(Google.Maps.WebServices.Common.LatLngLiteral,Google.Maps.WebServices.Common.LatLngLiteral)">
             <summary>
             Sets the bounding box of the viewport within which to bias geocode results more prominently.
             </summary>
@@ -3557,7 +3985,7 @@
             <param name="address">The address to geocode.</param>
             <returns>Returns this <see cref="T:Google.Maps.WebServices.Geocoding.GeocodingRequestOptions" /> for call chaining.</returns>
         </member>
-        <member name="M:Google.Maps.WebServices.Geocoding.GeocodingRequestOptions.SetLocation(Google.Maps.WebServices.Common.LatLng)">
+        <member name="M:Google.Maps.WebServices.Geocoding.GeocodingRequestOptions.SetLocation(Google.Maps.WebServices.Common.LatLngLiteral)">
             <summary>
             Creates a reverse geocode for <paramref name="latLng" />.
             </summary>
@@ -3659,7 +4087,7 @@
         <member name="M:Google.Maps.WebServices.Geocoding.GeocodingService.GeocodeAsync(Google.Maps.WebServices.GoogleMapsServiceClient,System.Collections.Generic.IDictionary{Google.Maps.WebServices.Geocoding.ComponentFilterType,System.String},Google.Maps.WebServices.Geocoding.GeocodingRequestOptions,System.Threading.CancellationToken)">
             <inheritdoc cref="M:Google.Maps.WebServices.Geocoding.GeocodingService.GeocodeAsync(Google.Maps.WebServices.GoogleMapsServiceClient,System.Collections.Generic.IEnumerable{Google.Maps.WebServices.Geocoding.ComponentFilter},Google.Maps.WebServices.Geocoding.GeocodingRequestOptions,System.Threading.CancellationToken)" />
         </member>
-        <member name="M:Google.Maps.WebServices.Geocoding.GeocodingService.ReverseGeocodeAsync(Google.Maps.WebServices.GoogleMapsServiceClient,Google.Maps.WebServices.Common.LatLng,Google.Maps.WebServices.Geocoding.GeocodingRequestOptions,System.Threading.CancellationToken)">
+        <member name="M:Google.Maps.WebServices.Geocoding.GeocodingService.ReverseGeocodeAsync(Google.Maps.WebServices.GoogleMapsServiceClient,Google.Maps.WebServices.Common.LatLngLiteral,Google.Maps.WebServices.Geocoding.GeocodingRequestOptions,System.Threading.CancellationToken)">
             <summary>
             Requests the street address of a <paramref name="location" />.
             </summary>
@@ -3897,7 +4325,7 @@
         </member>
         <member name="P:Google.Maps.WebServices.Geocoding.Geometry.Location">
             <summary>
-            The geocoded <see cref="T:Google.Maps.WebServices.Common.LatLng" />.
+            The geocoded <see cref="T:Google.Maps.WebServices.Common.LatLngLiteral" />.
             </summary>
         </member>
         <member name="P:Google.Maps.WebServices.Geocoding.Geometry.LocationType">
@@ -3923,7 +4351,7 @@
         </member>
         <member name="P:Google.Maps.WebServices.Roads.SnappedPointResult.Location">
             <summary>
-            A <see cref="T:Google.Maps.WebServices.Common.LatLng" /> representing the snapped location.
+            A <see cref="T:Google.Maps.WebServices.Common.LatLngLiteral" /> representing the snapped location.
             </summary>
         </member>
         <member name="P:Google.Maps.WebServices.Roads.SnappedPointResult.OriginalIndex">
@@ -3935,7 +4363,7 @@
             interpolate is set to true, then it's possible that the response will contain more
             coordinates than the request. Interpolated values will not have an originalIndex. These
             values are indexed from 0, so a point with an originalIndex of 4 will be the snapped
-            value of the 5th <see cref="T:Google.Maps.WebServices.Common.LatLng" /> passed to the path parameter.
+            value of the 5th <see cref="T:Google.Maps.WebServices.Common.LatLngLiteral" /> passed to the path parameter.
             </remarks>
         </member>
         <member name="P:Google.Maps.WebServices.Roads.SnappedPointResult.PlaceId">
@@ -3959,7 +4387,7 @@
             Constructs an instance of the <see cref="T:Google.Maps.WebServices.Roads.NearestRoadsRequestOptions" /> class.
             </summary>
         </member>
-        <member name="M:Google.Maps.WebServices.Roads.NearestRoadsRequestOptions.#ctor(System.Collections.Generic.IEnumerable{Google.Maps.WebServices.Common.LatLng})">
+        <member name="M:Google.Maps.WebServices.Roads.NearestRoadsRequestOptions.#ctor(System.Collections.Generic.IEnumerable{Google.Maps.WebServices.Common.LatLngLiteral})">
             <summary>
             Constructs an instance of the <see cref="T:Google.Maps.WebServices.Roads.NearestRoadsRequestOptions" /> class.
             </summary>
@@ -3998,7 +4426,7 @@
             documentation</see> for more detail.
             </remarks>
         </member>
-        <member name="M:Google.Maps.WebServices.Roads.RoadsService.NearestRoadsAsync(Google.Maps.WebServices.GoogleMapsServiceClient,System.Collections.Generic.IReadOnlyList{Google.Maps.WebServices.Common.LatLng},Google.Maps.WebServices.Roads.NearestRoadsRequestOptions,System.Threading.CancellationToken)">
+        <member name="M:Google.Maps.WebServices.Roads.RoadsService.NearestRoadsAsync(Google.Maps.WebServices.GoogleMapsServiceClient,System.Collections.Generic.IReadOnlyList{Google.Maps.WebServices.Common.LatLngLiteral},Google.Maps.WebServices.Roads.NearestRoadsRequestOptions,System.Threading.CancellationToken)">
             <summary>
             Takes up to 100 independent coordinates, and returns the closest road segment for each point.
             </summary>
@@ -4015,7 +4443,7 @@
             </param>
             <returns>A <see cref="T:Google.Maps.WebServices.Common.GoogleMapsResponse`1" /> of the snapped points.</returns>
         </member>
-        <member name="M:Google.Maps.WebServices.Roads.RoadsService.SnapToRoadsAsync(Google.Maps.WebServices.GoogleMapsServiceClient,System.Collections.Generic.IReadOnlyList{Google.Maps.WebServices.Common.LatLng},Google.Maps.WebServices.Roads.SnapToRoadsRequestOptions,System.Threading.CancellationToken)">
+        <member name="M:Google.Maps.WebServices.Roads.RoadsService.SnapToRoadsAsync(Google.Maps.WebServices.GoogleMapsServiceClient,System.Collections.Generic.IReadOnlyList{Google.Maps.WebServices.Common.LatLngLiteral},Google.Maps.WebServices.Roads.SnapToRoadsRequestOptions,System.Threading.CancellationToken)">
             <summary>
             Takes up to 100 GPS points collected along a route, and returns a similar set of data
             with the points snapped to the most likely roads the vehicle was traveling along.
@@ -4058,7 +4486,7 @@
             Constructs an instance of the <see cref="T:Google.Maps.WebServices.Roads.SnapToRoadsRequestOptions" /> class.
             </summary>
         </member>
-        <member name="M:Google.Maps.WebServices.Roads.SnapToRoadsRequestOptions.#ctor(System.Collections.Generic.IEnumerable{Google.Maps.WebServices.Common.LatLng})">
+        <member name="M:Google.Maps.WebServices.Roads.SnapToRoadsRequestOptions.#ctor(System.Collections.Generic.IEnumerable{Google.Maps.WebServices.Common.LatLngLiteral})">
             <summary>
             Constructs an instance of the <see cref="T:Google.Maps.WebServices.Roads.SnapToRoadsRequestOptions" /> class.
             </summary>
@@ -4327,16 +4755,16 @@
         </member>
         <member name="M:Google.Maps.WebServices.Util.PolylineEncoding.Decode(System.String)">
             <summary>
-            Decodes an encoded path string into a sequence of <see cref="T:Google.Maps.WebServices.Common.LatLng" />.
+            Decodes an encoded path string into a sequence of <see cref="T:Google.Maps.WebServices.Common.LatLngLiteral" />.
             </summary>
             <param name="encodedPath">The encoded polyline to be decoded.</param>
-            <returns>A collection of <see cref="T:Google.Maps.WebServices.Common.LatLng" />.</returns>
+            <returns>A collection of <see cref="T:Google.Maps.WebServices.Common.LatLngLiteral" />.</returns>
         </member>
-        <member name="M:Google.Maps.WebServices.Util.PolylineEncoding.Encode(System.Collections.Generic.IEnumerable{Google.Maps.WebServices.Common.LatLng})">
+        <member name="M:Google.Maps.WebServices.Util.PolylineEncoding.Encode(System.Collections.Generic.IEnumerable{Google.Maps.WebServices.Common.LatLngLiteral})">
             <summary>
-            Encodes a sequence of <see cref="T:Google.Maps.WebServices.Common.LatLng" /> into an encoded path string.
+            Encodes a sequence of <see cref="T:Google.Maps.WebServices.Common.LatLngLiteral" /> into an encoded path string.
             </summary>
-            <param name="path">The collection of <see cref="T:Google.Maps.WebServices.Common.LatLng" /> to encode.</param>
+            <param name="path">The collection of <see cref="T:Google.Maps.WebServices.Common.LatLngLiteral" /> to encode.</param>
             <returns>A string representation of an encoded polyline.</returns>
         </member>
     </members>

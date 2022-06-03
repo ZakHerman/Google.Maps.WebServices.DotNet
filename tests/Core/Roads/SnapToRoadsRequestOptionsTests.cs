@@ -40,12 +40,12 @@ namespace Google.Maps.WebServices.Tests.Core.Roads
             Assert.Equal("https://roads.googleapis.com/v1/snapToRoads?path=-35.27801%2c149.12958%7c-35.28032%2c149.12907", options.Uri.AbsoluteUri);
         }
 
-        private static IEnumerable<LatLng> GetPath()
+        private static IEnumerable<LatLngLiteral> GetPath()
         {
-            return new List<LatLng>
+            return new List<LatLngLiteral>
             {
-                new LatLng(-35.27801, 149.12958),
-                new LatLng(-35.28032, 149.12907)
+                new LatLngLiteral(-35.27801, 149.12958),
+                new LatLngLiteral(-35.28032, 149.12907)
             };
         }
     }

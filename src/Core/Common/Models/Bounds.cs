@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace Google.Maps.WebServices.Common
 {
     /// <summary>
-    /// The northeast and southwest points that delineate the outer bounds of a map.
+    /// A rectangle in geographical coordinates from points at the southwest and northeast corners.
     /// </summary>
     public class Bounds
     {
@@ -12,13 +12,13 @@ namespace Google.Maps.WebServices.Common
         /// The northeast corner of the bounding box.
         /// </summary>
         [JsonProperty("northeast")]
-        public LatLng NorthEast { get; set; }
+        public LatLngLiteral NorthEast { get; set; }
 
         /// <summary>
         /// The southwest corner of the bounding box.
         /// </summary>
         [JsonProperty("southwest")]
-        public LatLng SouthWest { get; set; }
+        public LatLngLiteral SouthWest { get; set; }
 
         /// <summary>
         /// Merge two <see cref="Bounds" /> together.
@@ -36,7 +36,7 @@ namespace Google.Maps.WebServices.Common
 
             return new Bounds
             {
-                NorthEast = new LatLng
+                NorthEast = new LatLngLiteral
                 {
                     Latitude = a?.NorthEast?.Latitude.CompareTo(b?.NorthEast?.Latitude) > 0
                         ? a.NorthEast.Latitude
@@ -45,7 +45,7 @@ namespace Google.Maps.WebServices.Common
                         ? a.NorthEast.Longitude
                         : b?.NorthEast?.Longitude ?? a.NorthEast.Longitude
                 },
-                SouthWest = new LatLng
+                SouthWest = new LatLngLiteral
                 {
                     Latitude = a?.SouthWest?.Latitude.CompareTo(b?.SouthWest?.Latitude) < 0
                         ? a.SouthWest.Latitude

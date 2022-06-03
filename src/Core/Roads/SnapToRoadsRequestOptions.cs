@@ -22,7 +22,7 @@ namespace Google.Maps.WebServices.Roads
         /// Constructs an instance of the <see cref="SnapToRoadsRequestOptions" /> class.
         /// </summary>
         /// <param name="path">The path to be snapped.</param>
-        internal SnapToRoadsRequestOptions(IEnumerable<LatLng> path) : base(RoadsUrlHost, RoadsUrlPath)
+        internal SnapToRoadsRequestOptions(IEnumerable<LatLngLiteral> path) : base(RoadsUrlHost, RoadsUrlPath)
         {
             if (path is null)
                 throw new ArgumentNullException(nameof(path));
@@ -44,7 +44,7 @@ namespace Google.Maps.WebServices.Roads
             return SetQueryParameter("interpolate", interpolate.ToString());
         }
 
-        internal SnapToRoadsRequestOptions SetPath(IEnumerable<LatLng> path)
+        internal SnapToRoadsRequestOptions SetPath(IEnumerable<LatLngLiteral> path)
         {
             return SetQueryParameter("path", string.Join("|", path));
         }

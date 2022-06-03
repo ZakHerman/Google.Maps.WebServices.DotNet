@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Google.Maps.WebServices.Common;
 
@@ -22,8 +20,6 @@ namespace Google.Maps.WebServices.Directions
     /// </remarks>
     public static class DirectionsService
     {
-        private const int MaxWaypointsLimit = 25;
-
         /// <summary>
         /// Requests the directions between the given <paramref name="origin" /> and <paramref
         /// name="destination" />.
@@ -64,10 +60,10 @@ namespace Google.Maps.WebServices.Directions
         /// The instance of <see cref="GoogleMapsServiceClient" /> used to send the request.
         /// </param>
         /// <param name="origin">
-        /// The <see cref="LatLng" /> value to use as a starting location to calculate directions.
+        /// The <see cref="LatLngLiteral" /> value to use as a starting location to calculate directions.
         /// </param>
         /// <param name="destination">
-        /// The <see cref="LatLng" /> value to use as an ending location to calculate directions.
+        /// The <see cref="LatLngLiteral" /> value to use as an ending location to calculate directions.
         /// </param>
         /// <param name="options">
         /// A <see cref="DirectionsRequestOptions" /> used to set additional request query parameters.
@@ -75,8 +71,8 @@ namespace Google.Maps.WebServices.Directions
         /// <param name="cancellationToken">
         /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
-        public static Task<GoogleMapsResponse<DirectionsResult>> GetDirectionsAsync(this GoogleMapsServiceClient client, LatLng origin,
-            LatLng destination, DirectionsRequestOptions options = null, CancellationToken cancellationToken = default) =>
+        public static Task<GoogleMapsResponse<DirectionsResult>> GetDirectionsAsync(this GoogleMapsServiceClient client, LatLngLiteral origin,
+            LatLngLiteral destination, DirectionsRequestOptions options = null, CancellationToken cancellationToken = default) =>
             GetDirectionsAsync(client, origin.ToUriValue(), destination.ToUriValue(), options, cancellationToken);
 
         /// <inheritdoc cref="GetDirectionsAsync(GoogleMapsServiceClient, string, string, DirectionsRequestOptions, CancellationToken)" path="//*[not(self::param)]" />
@@ -98,50 +94,5 @@ namespace Google.Maps.WebServices.Directions
         public static Task<GoogleMapsResponse<DirectionsResult>> GetDirectionsAsync(this GoogleMapsServiceClient client, PlusCode origin,
             PlusCode destination, DirectionsRequestOptions options = null, CancellationToken cancellationToken = default) =>
             GetDirectionsAsync(client, origin?.GlobalCode ?? origin?.CompoundCode, destination?.GlobalCode ?? origin?.CompoundCode, options, cancellationToken);
-
-        internal static async Task<DirectionsResult> BatchDirectionsAsync(GoogleMapsServiceClient client, DirectionsRequestOptions options,
-            CancellationToken cancellationToken = default)
-        {
-            /*IEnumerable<DirectionsRequestOptions> directionsRequestOptions = SplitDirectionsRequestOptions(options);
-            List<Task<DirectionsResult>> tasks = new List<Task<DirectionsResult>>();
-
-            foreach (DirectionsRequestOptions directionsRequestOption in directionsRequestOptions)
-            {
-                var task = client.GetAsync<DirectionsRequestOptions, DirectionsServiceResponse, DirectionsResult>(directionsRequestOption, cancellationToken);
-                tasks.Add(task);
-            }
-
-            DirectionsResult[] results = await Task.WhenAll(tasks);
-
-            return results.Skip(1).Aggregate(results[0], DirectionsResult.Merge);*/
-            return null;
-        }
-
-        internal static IEnumerable<DirectionsRequestOptions> SplitDirectionsRequestOptions(DirectionsRequestOptions options)
-        {
-            if (options is null)
-                throw new ArgumentNullException(nameof(options));
-
-            if (options.Waypoints.Count <= MaxWaypointsLimit)
-                return new List<DirectionsRequestOptions> { options };
-
-            var waypoints = new List<Waypoint>();
-            waypoints.Add(new Waypoint(options.Origin));
-            waypoints.AddRange(options.Waypoints);
-            waypoints.Add(new Waypoint(options.Destination));
-
-            var requestOptions = new List<DirectionsRequestOptions>();
-
-            for (int i = 0; i < waypoints.Count; i += Math.Min(MaxWaypointsLimit + 1, waypoints.Count - i))
-            {
-                Waypoint requestOrigin = waypoints[i];
-                List<Waypoint> requestWaypoints = waypoints.GetRange(i + 1, Math.Min(MaxWaypointsLimit, waypoints.Count - i - 2));
-                Waypoint requestDestination = waypoints[i + Math.Min(MaxWaypointsLimit + 1, waypoints.Count - i - 1)];
-                DirectionsRequestOptions directionsRequestOptions = new DirectionsRequestOptions(options.Uri);
-                requestOptions.Add(directionsRequestOptions.SetOrigin(requestOrigin.Location).SetWaypoints(requestWaypoints).SetDestination(requestDestination.Location));
-            }
-
-            return requestOptions;
-        }
     }
 }

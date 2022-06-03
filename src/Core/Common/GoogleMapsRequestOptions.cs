@@ -10,7 +10,7 @@ namespace Google.Maps.WebServices.Common
     {
         private const string GoogleMapsUrlHostName = "https://maps.googleapis.com";
         private const int RequestUrlCharacterLimit = 8192;
-        private readonly UriBuilder _uriBuilder;
+        protected readonly UriBuilder _uriBuilder;
 
         /// <summary>
         /// Constructs an instance of the <see cref="GoogleMapsRequestOptions{T}" /> class.
@@ -41,7 +41,7 @@ namespace Google.Maps.WebServices.Common
         /// <summary>
         /// The request URI.
         /// </summary>
-        public Uri Uri => _uriBuilder.Uri;
+        internal Uri Uri => _uriBuilder.Uri;
 
         /// <summary>
         /// Sets a custom query parameter.

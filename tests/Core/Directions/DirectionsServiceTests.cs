@@ -34,10 +34,10 @@ namespace Google.Maps.WebServices.Tests.Core.Directions
             Assert.NotNull(bounds);
             Assert.NotNull(bounds.NorthEast);
             Assert.NotNull(bounds.SouthWest);
-            Assert.Equal(-36.849036, bounds.NorthEast.Latitude);
-            Assert.Equal(174.8409792, bounds.NorthEast.Longitude);
-            Assert.Equal(-36.9263368, bounds.SouthWest.Latitude);
-            Assert.Equal(174.7640208, bounds.SouthWest.Longitude);
+            Assert.NotEqual(default, bounds.NorthEast.Latitude);
+            Assert.NotEqual(default, bounds.NorthEast.Longitude);
+            Assert.NotEqual(default, bounds.SouthWest.Latitude);
+            Assert.NotEqual(default, bounds.SouthWest.Longitude);
         }
 
         [Fact]
@@ -170,7 +170,7 @@ namespace Google.Maps.WebServices.Tests.Core.Directions
 
             // Act
             GoogleMapsResponse<DirectionsResult> response = await googleMapsClient.GetDirectionsAsync("ORIGIN_TEST", "DESTINATION_TEST");
-            List<GeocodedWaypoint> geocodedWaypoints = response.Result.GeocodedWaypoints;
+            List<DirectionsGeocodedWaypoint> geocodedWaypoints = response.Result.GeocodedWaypoints;
 
             // Assert
             Assert.NotNull(geocodedWaypoints);
@@ -181,145 +181,8 @@ namespace Google.Maps.WebServices.Tests.Core.Directions
             Assert.Contains(AddressType.ColloquialArea, geocodedWaypoints[0].Types);
             Assert.Contains(AddressType.Unknown, geocodedWaypoints[0].Types);
             Assert.Equal(AddressType.Unknown, geocodedWaypoints[0].Types[3]);
-            Assert.Equal(GeocodedWaypointStatus.Ok, geocodedWaypoints[0].GeoCoderStatus);
+            Assert.Equal(GeocodedWaypointStatus.Ok, geocodedWaypoints[0].GeocoderStatus);
             Assert.Equal("ChIJ_5kb1vpHDW0RENfNoq8OXk8", geocodedWaypoints[1].PlaceId);
-        }
-
-        [Theory]
-        [InlineData(0, 1)]
-        [InlineData(1, 1)]
-        [InlineData(24, 1)]
-        [InlineData(25, 1)]
-        [InlineData(26, 2)]
-        [InlineData(60, 3)]
-        [InlineData(99, 4)]
-        [InlineData(100, 4)]
-        public void SplitDirectionsRequestOptions_WithMultipleWaypoints_HasCorrectCollectionCount(int waypointsCount, int collectionCount)
-        {
-            // Arrange
-            const string origin = "ORIGIN";
-            const string destination = "DESTINATION";
-            var waypoints = new List<Waypoint>();
-
-            for (int i = 0; i < waypointsCount; i++)
-            {
-                waypoints.Add(new Waypoint($"WAYPOINT_{i + 1}"));
-            }
-
-            DirectionsRequestOptions options = new DirectionsRequestOptions(origin, destination).SetWaypoints(waypoints);
-
-            // Act
-            List<DirectionsRequestOptions> requestOptions = DirectionsService.SplitDirectionsRequestOptions(options).ToList();
-
-            // Assert
-            Assert.NotNull(requestOptions);
-            Assert.Equal(collectionCount, requestOptions.Count);
-        }
-
-        [Fact]
-        public void SplitDirectionsRequestOptions_With60Waypoints_ReturnsDirectionsRequestOptionsCollection()
-        {
-            // Arrange
-            const string origin = "ORIGIN";
-            const string destination = "DESTINATION";
-            var waypoints = new List<Waypoint>();
-
-            for (int i = 0; i < 60; i++)
-            {
-                waypoints.Add(new Waypoint($"WAYPOINT_{i + 1}"));
-            }
-
-            DirectionsRequestOptions options = new DirectionsRequestOptions()
-                .SetOrigin(origin)
-                .SetDestination(destination)
-                .SetWaypoints(waypoints)
-                .SetTravelMode(TravelMode.Walking)
-                .SetTransitRoutingPreference(TransitRoutingPreference.FewerTransfers)
-                .SetPreferredRegion("TEST_REGION")
-                .SetPreferredUnitSystem(Unit.Metric);
-
-            // Act
-            List<DirectionsRequestOptions> requestOptions = DirectionsService.SplitDirectionsRequestOptions(options).ToList();
-
-            // Assert
-            Assert.NotNull(requestOptions);
-            Assert.Equal("ORIGIN", requestOptions[0].Origin);
-            Assert.Equal("WAYPOINT_1", requestOptions[0].Waypoints.FirstOrDefault()?.Location);
-            Assert.Equal("WAYPOINT_25", requestOptions[0].Waypoints.LastOrDefault()?.Location);
-            Assert.Equal("WAYPOINT_26", requestOptions[0].Destination);
-            Assert.Contains("mode", requestOptions[0].Uri.Query);
-            Assert.Equal("WALKING", HttpUtility.ParseQueryString(requestOptions[0].Uri.Query).Get("mode"));
-            Assert.Contains("transit_routing_preference", requestOptions[0].Uri.Query);
-            Assert.Equal("fewer_transfers", HttpUtility.ParseQueryString(requestOptions[0].Uri.Query).Get("transit_routing_preference"));
-            Assert.Contains("region", requestOptions[0].Uri.Query);
-            Assert.Equal("TEST_REGION", HttpUtility.ParseQueryString(requestOptions[0].Uri.Query).Get("region"));
-            Assert.Contains("units", requestOptions[0].Uri.Query);
-            Assert.Equal("metric", HttpUtility.ParseQueryString(requestOptions[0].Uri.Query).Get("units"));
-            Assert.Equal("WAYPOINT_26", requestOptions[1].Origin);
-            Assert.Equal("WAYPOINT_27", requestOptions[1].Waypoints.FirstOrDefault()?.Location);
-            Assert.Equal("WAYPOINT_51", requestOptions[1].Waypoints.LastOrDefault()?.Location);
-            Assert.Equal("WAYPOINT_52", requestOptions[1].Destination);
-            Assert.Equal("WAYPOINT_52", requestOptions[2].Origin);
-            Assert.Equal("WAYPOINT_53", requestOptions[2].Waypoints.FirstOrDefault()?.Location);
-            Assert.Equal("WAYPOINT_60", requestOptions[2].Waypoints.LastOrDefault()?.Location);
-            Assert.Equal("DESTINATION", requestOptions[2].Destination);
-        }
-
-        [Fact]
-        public void SplitDirectionsRequestOptions_With26Waypoints_ReturnsDirectionsRequestOptionsCollection()
-        {
-            // Arrange
-            const string origin = "ORIGIN";
-            const string destination = "DESTINATION";
-            var waypoints = new List<Waypoint>();
-
-            for (int i = 0; i < 26; i++)
-            {
-                waypoints.Add(new Waypoint($"WAYPOINT_{i + 1}"));
-            }
-
-            DirectionsRequestOptions options = new DirectionsRequestOptions(origin, destination).SetWaypoints(waypoints);
-
-            // Act
-            List<DirectionsRequestOptions> requestOptions = DirectionsService.SplitDirectionsRequestOptions(options).ToList();
-
-            // Assert
-            Assert.NotNull(requestOptions);
-            Assert.Equal("ORIGIN", requestOptions[0].Origin);
-            Assert.Equal("WAYPOINT_1", requestOptions[0].Waypoints.FirstOrDefault()?.Location);
-            Assert.Equal("WAYPOINT_25", requestOptions[0].Waypoints.LastOrDefault()?.Location);
-            Assert.Equal("WAYPOINT_26", requestOptions[0].Destination);
-            Assert.Contains("waypoints", requestOptions[0].Uri.Query);
-            Assert.Equal("WAYPOINT_26", requestOptions[1].Origin);
-            Assert.Equal("DESTINATION", requestOptions[1].Destination);
-            Assert.False(requestOptions[1].Waypoints.Any());
-            Assert.DoesNotContain("waypoints", requestOptions[1].Uri.Query);
-        }
-
-        [Fact]
-        public void SplitDirectionsRequestOptions_With25Waypoints_ReturnsDirectionsRequestOptionsCollection()
-        {
-            // Arrange
-            const string origin = "ORIGIN";
-            const string destination = "DESTINATION";
-            var waypoints = new List<Waypoint>();
-
-            for (int i = 0; i < 25; i++)
-            {
-                waypoints.Add(new Waypoint($"WAYPOINT_{i + 1}"));
-            }
-
-            DirectionsRequestOptions options = new DirectionsRequestOptions(origin, destination).SetWaypoints(waypoints);
-
-            // Act
-            List<DirectionsRequestOptions> requestOptions = DirectionsService.SplitDirectionsRequestOptions(options).ToList();
-
-            // Assert
-            Assert.NotNull(requestOptions);
-            Assert.Equal("ORIGIN", requestOptions[0].Origin);
-            Assert.Equal("WAYPOINT_1", requestOptions[0].Waypoints.FirstOrDefault()?.Location);
-            Assert.Equal("WAYPOINT_25", requestOptions[0].Waypoints.LastOrDefault()?.Location);
-            Assert.Equal("DESTINATION", requestOptions[0].Destination);
         }
     }
 }

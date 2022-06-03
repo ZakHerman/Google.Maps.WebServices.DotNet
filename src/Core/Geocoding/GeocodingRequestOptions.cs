@@ -23,7 +23,7 @@ namespace Google.Maps.WebServices.Geocoding
         /// Constructs an instance of the <see cref="GeocodingRequestOptions" /> class.
         /// </summary>
         /// <param name="location">The location to reverse geocode.</param>
-        internal GeocodingRequestOptions(LatLng location) : base(GeocodingUrlPath)
+        internal GeocodingRequestOptions(LatLngLiteral location) : base(GeocodingUrlPath)
         {
             if (location is null)
                 throw new ArgumentNullException(nameof(location));
@@ -73,7 +73,7 @@ namespace Google.Maps.WebServices.Geocoding
         /// <param name="southWestBound">The south west bound of the bounding box.</param>
         /// <param name="northEastBound">The north east bound of the bounding box.</param>
         /// <returns>Returns this <see cref="GeocodingRequestOptions" /> for call chaining.</returns>
-        public GeocodingRequestOptions SetBounds(LatLng southWestBound, LatLng northEastBound)
+        public GeocodingRequestOptions SetBounds(LatLngLiteral southWestBound, LatLngLiteral northEastBound)
         {
             if (southWestBound is null)
                 throw new ArgumentNullException(nameof(southWestBound));
@@ -207,7 +207,7 @@ namespace Google.Maps.WebServices.Geocoding
         /// </summary>
         /// <param name="latLng">The location to reverse geocode.</param>
         /// <returns>Returns this <see cref="GeocodingRequestOptions" /> for call chaining.</returns>
-        internal GeocodingRequestOptions SetLocation(LatLng latLng)
+        internal GeocodingRequestOptions SetLocation(LatLngLiteral latLng)
         {
             return SetQueryParameter("latlng", latLng.ToUriValue());
         }

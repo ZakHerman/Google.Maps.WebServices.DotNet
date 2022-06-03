@@ -92,10 +92,10 @@ namespace Google.Maps.WebServices
 
             HttpResponseMessage httpResponse = await _policyWrap.ExecuteAsync(async ct => await _httpClient.GetAsync(request.Uri, ct), cancellationToken);
 
-            return await ProcessResponseAsync<TResponse, TResult>(httpResponse);
+            return await HandleResponseAsync<TResponse, TResult>(httpResponse);
         }
 
-        private async Task<GoogleMapsResponse<TResult>> ProcessResponseAsync<TResponse, TResult>(HttpResponseMessage httpResponse)
+        private static async Task<GoogleMapsResponse<TResult>> HandleResponseAsync<TResponse, TResult>(HttpResponseMessage httpResponse)
             where TResponse : class, IResponse<TResult>
         {
             string responseBody = await httpResponse.Content.ReadAsStringAsync();

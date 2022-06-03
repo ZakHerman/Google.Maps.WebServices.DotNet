@@ -10,10 +10,10 @@ namespace Google.Maps.WebServices.Geocoding
     public class Geometry
     {
         /// <summary>
-        /// The geocoded <see cref="LatLng" />.
+        /// The geocoded <see cref="LatLngLiteral" />.
         /// </summary>
         [JsonProperty("location")]
-        public LatLng Location { get; set; }
+        public LatLngLiteral Location { get; set; }
 
         /// <summary>
         /// The level of certainty of this <see cref="GeocodingResult" />.

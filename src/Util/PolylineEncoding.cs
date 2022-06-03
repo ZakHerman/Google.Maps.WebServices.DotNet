@@ -16,18 +16,18 @@ namespace Google.Maps.WebServices.Util
     public static class PolylineEncoding
     {
         /// <summary>
-        /// Decodes an encoded path string into a sequence of <see cref="LatLng" />.
+        /// Decodes an encoded path string into a sequence of <see cref="LatLngLiteral" />.
         /// </summary>
         /// <param name="encodedPath">The encoded polyline to be decoded.</param>
-        /// <returns>A collection of <see cref="LatLng" />.</returns>
-        public static List<LatLng> Decode(string encodedPath)
+        /// <returns>A collection of <see cref="LatLngLiteral" />.</returns>
+        public static List<LatLngLiteral> Decode(string encodedPath)
         {
             if (encodedPath is null)
                 throw new ArgumentNullException(nameof(encodedPath));
 
             int len = encodedPath.Length;
 
-            var path = new List<LatLng>();
+            var path = new List<LatLngLiteral>();
             int index = 0;
             int lat = 0;
             int lng = 0;
@@ -59,18 +59,18 @@ namespace Google.Maps.WebServices.Util
 
                 lng += (result & 1) != 0 ? ~(result >> 1) : result >> 1;
 
-                path.Add(new LatLng(Math.Round(lat * 1e-5, 5), Math.Round(lng * 1e-5, 5)));
+                path.Add(new LatLngLiteral(Math.Round(lat * 1e-5, 5), Math.Round(lng * 1e-5, 5)));
             }
 
             return path;
         }
 
         /// <summary>
-        /// Encodes a sequence of <see cref="LatLng" /> into an encoded path string.
+        /// Encodes a sequence of <see cref="LatLngLiteral" /> into an encoded path string.
         /// </summary>
-        /// <param name="path">The collection of <see cref="LatLng" /> to encode.</param>
+        /// <param name="path">The collection of <see cref="LatLngLiteral" /> to encode.</param>
         /// <returns>A string representation of an encoded polyline.</returns>
-        public static string Encode(IEnumerable<LatLng> path)
+        public static string Encode(IEnumerable<LatLngLiteral> path)
         {
             if (path is null)
                 throw new ArgumentNullException(nameof(path));
@@ -80,7 +80,7 @@ namespace Google.Maps.WebServices.Util
 
             var result = new StringBuilder();
 
-            foreach (LatLng point in path)
+            foreach (LatLngLiteral point in path)
             {
                 long lat = (long)Math.Round(point.Latitude * 1e5);
                 long lng = (long)Math.Round(point.Longitude * 1e5);

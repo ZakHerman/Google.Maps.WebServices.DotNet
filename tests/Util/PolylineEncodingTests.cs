@@ -23,7 +23,7 @@ namespace Google.Maps.WebServices.Tests.Util
             string encodedPath = string.Empty;
 
             // Act
-            List<LatLng> path = PolylineEncoding.Decode(encodedPath);
+            List<LatLngLiteral> path = PolylineEncoding.Decode(encodedPath);
 
             // Assert
             Assert.Empty(path);
@@ -40,11 +40,11 @@ namespace Google.Maps.WebServices.Tests.Util
         public void Decode_WithValidEncodedPath_ReturnsLatLngCollection()
         {
             // Arrange
-            var firstPoint = new LatLng(-33.86746, 151.20709);
-            var lastPoint = new LatLng(-37.81413, 144.96318);
+            var firstPoint = new LatLngLiteral(-33.86746, 151.20709);
+            var lastPoint = new LatLngLiteral(-37.81413, 144.96318);
 
             // Act
-            List<LatLng> path = PolylineEncoding.Decode(_encodedPath);
+            List<LatLngLiteral> path = PolylineEncoding.Decode(_encodedPath);
 
             // Assert
             Assert.Equal(firstPoint, path.FirstOrDefault());
@@ -55,7 +55,7 @@ namespace Google.Maps.WebServices.Tests.Util
         public void Encode_WithEmptyPath_ReturnsEmptyString()
         {
             // Act
-            string encodedPath = PolylineEncoding.Encode(new List<LatLng>());
+            string encodedPath = PolylineEncoding.Encode(new List<LatLngLiteral>());
 
             // Assert
             Assert.Equal(string.Empty, encodedPath);
@@ -72,7 +72,7 @@ namespace Google.Maps.WebServices.Tests.Util
         public void Encode_WithValidDecodedPath_ReturnsEncodedPath()
         {
             // Act
-            List<LatLng> path = PolylineEncoding.Decode(_encodedPath);
+            List<LatLngLiteral> path = PolylineEncoding.Decode(_encodedPath);
             string encodedPath = PolylineEncoding.Encode(path);
 
             // Assert

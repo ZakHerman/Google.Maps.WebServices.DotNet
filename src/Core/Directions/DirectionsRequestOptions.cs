@@ -14,11 +14,20 @@ namespace Google.Maps.WebServices.Directions
         private const string DirectionsUrlPath = "/maps/api/directions/json";
         private bool _optimizeWaypoints;
 
-        internal string Destination { get; private set; }
+        /// <summary>
+        /// The destination of the the route.
+        /// </summary>
+        public string Destination { get; private set; }
 
-        internal string Origin { get; private set; }
+        /// <summary>
+        /// The origin of the route.
+        /// </summary>
+        public string Origin { get; private set; }
 
-        internal ICollection<Waypoint> Waypoints { get; set; } = new List<Waypoint>();
+        /// <summary>
+        /// The waypoints of the route.
+        /// </summary>
+        public ICollection<Waypoint> Waypoints { get; set; } = new List<Waypoint>();
 
         /// <summary>
         /// Constructs an instance of the <see cref="DirectionsRequestOptions" /> class.
@@ -29,8 +38,8 @@ namespace Google.Maps.WebServices.Directions
         /// <summary>
         /// Constructs an instance of the <see cref="DirectionsRequestOptions" /> class.
         /// </summary>
-        /// <param name="uri"></param>
-        internal DirectionsRequestOptions(Uri uri) : base(uri)
+        /// <param name="uri">The URI.</param>
+        public DirectionsRequestOptions(Uri uri) : base(uri)
         { }
 
         /// <summary>
@@ -46,13 +55,13 @@ namespace Google.Maps.WebServices.Directions
         /// /> or <see cref="PlusCode.CompoundCode" /> value to use as an ending location to
         /// calculate directions.
         /// </param>
-        internal DirectionsRequestOptions(string origin, string destination) : base(DirectionsUrlPath)
+        public DirectionsRequestOptions(string origin, string destination) : base(DirectionsUrlPath)
         {
             if (string.IsNullOrWhiteSpace(origin))
-                throw new ArgumentException("Value cannot be null, empty or white space", nameof(origin));
+                throw new ArgumentException("Value cannot be null, empty or white space.", nameof(origin));
 
             if (string.IsNullOrWhiteSpace(destination))
-                throw new ArgumentException("Value cannot be null, empty or white space", nameof(destination));
+                throw new ArgumentException("Value cannot be null, empty or white space.", nameof(destination));
 
             SetOrigin(origin);
             SetDestination(destination);
@@ -94,7 +103,7 @@ namespace Google.Maps.WebServices.Directions
         public DirectionsRequestOptions SetArrivalTime(DateTime arrivalTime)
         {
             if (arrivalTime.Kind == DateTimeKind.Unspecified)
-                throw new ArgumentException("Value has to be specified as local or UTC time.", nameof(arrivalTime));
+                throw new ArgumentException("Value has to be specified with a date time kind of local or UTC.", nameof(arrivalTime));
 
             return SetArrivalTime((DateTimeOffset)arrivalTime);
         }
@@ -317,7 +326,7 @@ namespace Google.Maps.WebServices.Directions
         /// </summary>
         /// <param name="waypoints">The waypoints to add to this directions request.</param>
         /// <returns>Returns this <see cref="DirectionsRequestOptions" /> for call chaining.</returns>
-        public DirectionsRequestOptions SetWaypoints(IEnumerable<LatLng> waypoints)
+        public DirectionsRequestOptions SetWaypoints(IEnumerable<LatLngLiteral> waypoints)
         {
             if (waypoints is null)
                 throw new ArgumentNullException(nameof(waypoints));
@@ -355,6 +364,34 @@ namespace Google.Maps.WebServices.Directions
         {
             Origin = origin;
             return SetQueryParameter("origin", origin);
+        }
+
+        /// <summary>
+        /// Gets the directions API request URI.
+        /// </summary>
+        /// <param name="origin">
+        /// The place ID, address, textual latitude/longitude value, <see cref="PlusCode.GlobalCode"
+        /// /> or <see cref="PlusCode.CompoundCode" /> value to use as a starting location to
+        /// calculate directions.
+        /// </param>
+        /// <param name="destination">
+        /// The place ID, address, textual latitude/longitude value, <see cref="PlusCode.GlobalCode"
+        /// /> or <see cref="PlusCode.CompoundCode" /> value to use as an ending location to
+        /// calculate directions.
+        /// </param>
+        /// <returns>The <see cref="Uri" /> of the request.</returns>
+        public Uri BuildUri(string origin, string destination)
+        {
+            if (string.IsNullOrWhiteSpace(origin))
+                throw new ArgumentException("Value cannot be null, empty or white space.", nameof(origin));
+
+            if (string.IsNullOrWhiteSpace(destination))
+                throw new ArgumentException("Value cannot be null, empty or white space.", nameof(destination));
+
+            SetOrigin(origin);
+            SetDestination(destination);
+
+            return _uriBuilder.Uri;
         }
 
         /// <inheritdoc />

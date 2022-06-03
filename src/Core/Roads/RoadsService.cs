@@ -30,7 +30,7 @@ namespace Google.Maps.WebServices.Roads
         /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
         /// <returns>A <see cref="GoogleMapsResponse{T}" /> of the snapped points.</returns>
-        public static Task<GoogleMapsResponse<IEnumerable<SnappedPointResult>>> NearestRoadsAsync(this GoogleMapsServiceClient client, IReadOnlyList<LatLng> points,
+        public static Task<GoogleMapsResponse<IEnumerable<SnappedPointResult>>> NearestRoadsAsync(this GoogleMapsServiceClient client, IReadOnlyList<LatLngLiteral> points,
                     NearestRoadsRequestOptions options = null, CancellationToken cancellationToken = default)
         {
             options = options?.SetPoints(points) ?? new NearestRoadsRequestOptions(points);
@@ -68,7 +68,7 @@ namespace Google.Maps.WebServices.Roads
         /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
         /// <returns>A <see cref="GoogleMapsResponse{T}" /> of the snapped points.</returns>
-        public static Task<GoogleMapsResponse<IEnumerable<SnappedPointResult>>> SnapToRoadsAsync(this GoogleMapsServiceClient client, IReadOnlyList<LatLng> path,
+        public static Task<GoogleMapsResponse<IEnumerable<SnappedPointResult>>> SnapToRoadsAsync(this GoogleMapsServiceClient client, IReadOnlyList<LatLngLiteral> path,
             SnapToRoadsRequestOptions options = null, CancellationToken cancellationToken = default)
         {
             options = options?.SetPath(path) ?? new SnapToRoadsRequestOptions(path);

@@ -5,14 +5,14 @@ using Newtonsoft.Json;
 namespace Google.Maps.WebServices.Common
 {
     /// <summary>
-    /// A place on Earth, represented by a latitude/longitude pair.
+    /// An object describing a specific location with latitude and longitude in decimal degrees.
     /// </summary>
-    public class LatLng : IUrlValue, IEquatable<LatLng>
+    public class LatLngLiteral : IUrlValue, IEquatable<LatLngLiteral>
     {
         /// <summary>
         /// Serialization constructor.
         /// </summary>
-        public LatLng()
+        public LatLngLiteral()
         { }
 
         /// <summary>
@@ -20,26 +20,26 @@ namespace Google.Maps.WebServices.Common
         /// </summary>
         /// <param name="latitude">The latitude of this location.</param>
         /// <param name="longitude">The longitude of this location.</param>
-        public LatLng(double latitude, double longitude)
+        public LatLngLiteral(double latitude, double longitude)
         {
             Latitude = latitude;
             Longitude = longitude;
         }
 
         /// <summary>
-        /// The latitude of this location.
+        /// Latitude in decimal degrees.
         /// </summary>
         [JsonProperty("lat")]
         public double Latitude { get; set; }
 
         /// <summary>
-        /// The longitude of this location.
+        /// Longitude in decimal degrees.
         /// </summary>
         [JsonProperty("lng")]
         public double Longitude { get; set; }
 
         /// <summary>
-        /// The latitude of this location.
+        /// Latitude in decimal degrees.
         /// </summary>
         /// <remarks>A write only property for when JSON field is "latitude".</remarks>
         [JsonProperty("latitude")]
@@ -49,7 +49,7 @@ namespace Google.Maps.WebServices.Common
         }
 
         /// <summary>
-        /// The longitude of this location.
+        /// Longitude in decimal degrees.
         /// </summary>
         /// <remarks>A write only property for when JSON field is "longitude".</remarks>
         [JsonProperty("longitude")]
@@ -59,7 +59,7 @@ namespace Google.Maps.WebServices.Common
         }
 
         /// <inheritdoc />
-        public bool Equals(LatLng other)
+        public bool Equals(LatLngLiteral other)
         {
             if (other is null)
                 return false;

@@ -11,8 +11,8 @@ namespace Google.Maps.WebServices.Tests.Core.Common.Models
         public void Equals_WithLatLng_ReturnTrue()
         {
             // Arrange
-            var a = new LatLng(10.0, 10);
-            var b = new LatLng(10, 10);
+            var a = new LatLngLiteral(10.0, 10);
+            var b = new LatLngLiteral(10, 10);
 
             // Assert
             Assert.Equal(a, b);
@@ -28,7 +28,7 @@ namespace Google.Maps.WebServices.Tests.Core.Common.Models
         public void ToUriValue_WithLatLng_ReturnsInvariantCultureString(string culture)
         {
             // Arrange
-            var latLng = new LatLng(12.3456, 0.1234);
+            var latLng = new LatLngLiteral(12.3456, 0.1234);
 
             // Act
             Thread.CurrentThread.CurrentCulture = new CultureInfo(culture);

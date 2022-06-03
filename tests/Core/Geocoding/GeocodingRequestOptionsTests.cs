@@ -37,7 +37,7 @@ namespace Google.Maps.WebServices.Tests.Core.Geocoding
 
         [Theory]
         [MemberData(nameof(GeocodingTestData.GetValidLocation), MemberType = typeof(GeocodingTestData))]
-        public void GeocodingRequestOptions_WithValidLatLng_ContainsLatLngQueryParameter(LatLng location, string uriQueryValue)
+        public void GeocodingRequestOptions_WithValidLatLng_ContainsLatLngQueryParameter(LatLngLiteral location, string uriQueryValue)
         {
             // Arrange
             var options = new GeocodingRequestOptions(location);
@@ -65,7 +65,7 @@ namespace Google.Maps.WebServices.Tests.Core.Geocoding
         public void GeocodingRequestOptions_WithNull_ThrowsArgumentNullException()
         {
             // Assert
-            Assert.Throws<ArgumentNullException>(() => new GeocodingRequestOptions((LatLng)null));
+            Assert.Throws<ArgumentNullException>(() => new GeocodingRequestOptions((LatLngLiteral)null));
         }
 
         [Theory]
@@ -85,7 +85,7 @@ namespace Google.Maps.WebServices.Tests.Core.Geocoding
 
         [Theory]
         [MemberData(nameof(GeocodingTestData.GetValidBoundsLatLngs), MemberType = typeof(GeocodingTestData))]
-        public void SetBounds_WithValidLatLngs_ContainsBoundsQueryParameter(LatLng southWest, LatLng northEast, string uriQueryValue)
+        public void SetBounds_WithValidLatLngs_ContainsBoundsQueryParameter(LatLngLiteral southWest, LatLngLiteral northEast, string uriQueryValue)
         {
             // Act
             GeocodingRequestOptions request = _options.SetBounds(southWest, northEast);
@@ -108,7 +108,7 @@ namespace Google.Maps.WebServices.Tests.Core.Geocoding
 
         [Theory]
         [MemberData(nameof(GeocodingTestData.GetInvalidLatLng), MemberType = typeof(GeocodingTestData))]
-        public void SetBounds_WithInvalidLatLngValues_ThrowsArgumentNullException(LatLng southWest, LatLng northEast)
+        public void SetBounds_WithInvalidLatLngValues_ThrowsArgumentNullException(LatLngLiteral southWest, LatLngLiteral northEast)
         {
             // Assert
             Assert.Throws<ArgumentNullException>(() => _options.SetBounds(southWest, northEast));
@@ -325,8 +325,8 @@ namespace Google.Maps.WebServices.Tests.Core.Geocoding
             // Arrange
             Bounds bounds = new()
             {
-                SouthWest = new LatLng(-90, -180),
-                NorthEast = new LatLng(90, 180)
+                SouthWest = new LatLngLiteral(-90, -180),
+                NorthEast = new LatLngLiteral(90, 180)
             };
 
             // Act

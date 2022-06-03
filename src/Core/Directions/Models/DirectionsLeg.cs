@@ -17,6 +17,24 @@ namespace Google.Maps.WebServices.Directions
     public class DirectionsLeg
     {
         /// <summary>
+        /// The estimated time of arrival for this leg.
+        /// </summary>
+        /// <remarks>
+        /// This property is only returned for transit directions.
+        /// </remarks>
+        [JsonProperty("arrival_time")]
+        public TimeZoneTextValueObject ArrivalTime { get; set; }
+
+        /// <summary>
+        /// The estimated time of departure for this leg.
+        /// </summary>
+        /// <remarks>
+        /// This property is only returned for transit directions.
+        /// </remarks>
+        [JsonProperty("departure_time")]
+        public TimeZoneTextValueObject DepartureTime { get; set; }
+
+        /// <summary>
         /// The total distance covered by this leg.
         /// </summary>
         [JsonProperty("distance")]
@@ -52,8 +70,8 @@ namespace Google.Maps.WebServices.Directions
         public Duration DurationInTraffic { get; set; }
 
         /// <summary>
-        /// The human-readable address (typically a street address) reflecting the end location of
-        /// this leg.
+        /// The human-readable address (typically a street address) from reverse geocoding
+        /// the <see cref="EndLocation" /> of this leg.
         /// </summary>
         [JsonProperty("end_address")]
         public string EndAddress { get; set; }
@@ -63,16 +81,16 @@ namespace Google.Maps.WebServices.Directions
         /// </summary>
         /// <remarks>
         /// Because the Directions API calculates directions between locations by using the nearest
-        /// transportation option (usually a road) at the start and end points, EndLocation may be
-        /// different than the provided destination of this leg if, for example, a road is not near
-        /// the destination.
+        /// transportation option (usually a road) at the start and end points,
+        /// <see cref="EndLocation" /> may be different than the provided destination of this leg
+        /// if, for example, a road is not near the destination.
         /// </remarks>
         [JsonProperty("end_location")]
-        public LatLng EndLocation { get; set; }
+        public LatLngLiteral EndLocation { get; set; }
 
         /// <summary>
-        /// The human-readable address (typically a street address) reflecting the start location of
-        /// this leg.
+        /// The human-readable address (typically a street address) resulting from reverse geocoding
+        /// the <see cref="StartLocation" /> of this leg.
         /// </summary>
         [JsonProperty("start_address")]
         public string StartAddress { get; set; }
@@ -86,7 +104,7 @@ namespace Google.Maps.WebServices.Directions
         /// different from the provided origin of this leg if, for example, a road is not near the origin.
         /// </remarks>
         [JsonProperty("start_location")]
-        public LatLng StartLocation { get; set; }
+        public LatLngLiteral StartLocation { get; set; }
 
         /// <summary>
         /// Contains a collection of steps denoting information about each separate step of this leg
@@ -96,12 +114,18 @@ namespace Google.Maps.WebServices.Directions
         public List<DirectionsStep> Steps { get; } = new List<DirectionsStep>();
 
         /// <summary>
-        /// Decodes the <see cref="EncodedPolyline" /> of <see cref="Steps" />.
+        /// The locations of via waypoints along this leg.
         /// </summary>
-        /// <returns>A collection of <see cref="LatLng" />.</returns>
-        public IEnumerable<LatLng> GetPath()
+        [JsonProperty("via_waypoint")]
+        public List<DirectionsViaWaypoint> ViaWaypoints { get; } = new List<DirectionsViaWaypoint>();
+
+        /// <summary>
+        /// Decodes the <see cref="DirectionsPolyline" /> of <see cref="Steps" />.
+        /// </summary>
+        /// <returns>A collection of <see cref="LatLngLiteral" />.</returns>
+        public IEnumerable<LatLngLiteral> GetPath()
         {
-            var path = new List<LatLng>();
+            var path = new List<LatLngLiteral>();
 
             foreach (DirectionsStep directionsStep in Steps)
             {

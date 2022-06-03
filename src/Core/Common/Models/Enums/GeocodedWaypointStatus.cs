@@ -1,11 +1,12 @@
 ﻿using System.Runtime.Serialization;
+using Google.Maps.WebServices.Directions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace Google.Maps.WebServices.Common
 {
     /// <summary>
-    /// The status result for a single <see cref="GeocodedWaypoint" />.
+    /// The status result for a single <see cref="DirectionsGeocodedWaypoint" />.
     /// </summary>
     /// <remarks>
     /// See <a

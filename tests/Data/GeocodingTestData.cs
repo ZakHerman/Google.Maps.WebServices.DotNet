@@ -15,9 +15,9 @@ namespace Google.Maps.WebServices.Tests.Data
 
         public static IEnumerable<object[]> GetValidLocation()
         {
-            yield return new object[] { new LatLng(40.714224, -73.961452), "40.714224,-73.961452" };
-            yield return new object[] { new LatLng(180, -179.99999999), "180,-179.99999999" };
-            yield return new object[] { new LatLng(), "0,0" };
+            yield return new object[] { new LatLngLiteral(40.714224, -73.961452), "40.714224,-73.961452" };
+            yield return new object[] { new LatLngLiteral(180, -179.99999999), "180,-179.99999999" };
+            yield return new object[] { new LatLngLiteral(), "0,0" };
         }
 
         public static IEnumerable<object[]> GetValidBounds()
@@ -26,8 +26,8 @@ namespace Google.Maps.WebServices.Tests.Data
             {
                 new Bounds
                 {
-                    NorthEast = new LatLng(42.1282269, -87.7108162),
-                    SouthWest = new LatLng(42.0886089, -87.7708629)
+                    NorthEast = new LatLngLiteral(42.1282269, -87.7108162),
+                    SouthWest = new LatLngLiteral(42.0886089, -87.7708629)
                 },
                 "42.0886089,-87.7708629|42.1282269,-87.7108162"
             };
@@ -37,8 +37,8 @@ namespace Google.Maps.WebServices.Tests.Data
         {
             yield return new object[]
             {
-                new LatLng(42.0886089, -87.7708629),
-                new LatLng(42.1282269, -87.7108162),
+                new LatLngLiteral(42.0886089, -87.7708629),
+                new LatLngLiteral(42.1282269, -87.7108162),
                 "42.0886089,-87.7708629|42.1282269,-87.7108162"
             };
         }
@@ -50,15 +50,15 @@ namespace Google.Maps.WebServices.Tests.Data
             yield return new object[] { new Bounds { NorthEast = null } };
             yield return new object[] { new Bounds { SouthWest = null } };
             yield return new object[] { new Bounds { NorthEast = null, SouthWest = null } };
-            yield return new object[] { new Bounds { SouthWest = new LatLng(42.0886089, -87.7708629) } };
-            yield return new object[] { new Bounds { SouthWest = new LatLng(42.0886089, -87.7708629) } };
+            yield return new object[] { new Bounds { SouthWest = new LatLngLiteral(42.0886089, -87.7708629) } };
+            yield return new object[] { new Bounds { SouthWest = new LatLngLiteral(42.0886089, -87.7708629) } };
         }
 
         public static IEnumerable<object[]> GetInvalidLatLng()
         {
             yield return new object[] { null, null };
-            yield return new object[] { new LatLng(), null };
-            yield return new object[] { null, new LatLng() };
+            yield return new object[] { new LatLngLiteral(), null };
+            yield return new object[] { null, new LatLngLiteral() };
         }
 
         public static IEnumerable<object[]> GetComponentFilters()

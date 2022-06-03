@@ -124,7 +124,7 @@ namespace Google.Maps.WebServices.Geocoding
         /// A <see cref="GoogleMapsResponse{T}" /> of the reverse geocoding of <paramref
         /// name="location" />.
         /// </returns>
-        public static Task<GoogleMapsResponse<IEnumerable<GeocodingResult>>> ReverseGeocodeAsync(this GoogleMapsServiceClient client, LatLng location,
+        public static Task<GoogleMapsResponse<IEnumerable<GeocodingResult>>> ReverseGeocodeAsync(this GoogleMapsServiceClient client, LatLngLiteral location,
             GeocodingRequestOptions options = null, CancellationToken cancellationToken = default)
         {
             options = options?.SetLocation(location) ?? new GeocodingRequestOptions(location);

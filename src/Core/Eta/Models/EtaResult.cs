@@ -13,7 +13,7 @@ namespace Google.Maps.WebServices.Eta
         /// <summary>
         /// The latitude/longitude coordinates.
         /// </summary>
-        public LatLng Location { get; set; }
+        public LatLngLiteral Location { get; set; }
 
         public DateTime ArrivalDateTimeUtc { get; set; }
 
