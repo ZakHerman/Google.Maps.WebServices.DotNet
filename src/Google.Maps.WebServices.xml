@@ -152,6 +152,12 @@
             Google Maps Web Service documentation.
             </summary>
         </member>
+        <member name="M:Google.Maps.WebServices.Common.GoogleMapsRequestOptions`1.BuildUri">
+            <summary>
+            Gets the request URI.
+            </summary>
+            <returns>The <see cref="P:Google.Maps.WebServices.Common.GoogleMapsRequestOptions`1.Uri" /> of the request.</returns>
+        </member>
         <member name="M:Google.Maps.WebServices.Common.GoogleMapsRequestOptions`1.ContainsQueryParameter(System.String)">
             <summary>
             Indicates whether the URI contains a query parameter matching <paramref name="paramName" />.
@@ -2554,6 +2560,28 @@
             </remarks>
             <returns>Returns this <see cref="T:Google.Maps.WebServices.Directions.DirectionsRequestOptions" /> for call chaining.</returns>
         </member>
+        <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetDestination(System.String)">
+            <summary>
+            The address or textual latitude/longitude value from which you wish to calculate directions.
+            </summary>
+            <remarks>
+            If you pass an address as a location, the Directions service will geocode the location
+            and convert it to a latitude/longitude coordinate to calculate directions.
+            </remarks>
+            <param name="destination">The ending location for the Directions request.</param>
+            <returns>Returns this <see cref="T:Google.Maps.WebServices.Directions.DirectionsRequestOptions" /> for call chaining.</returns>
+        </member>
+        <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetOrigin(System.String)">
+            <summary>
+            The address or textual latitude/longitude value from which you wish to calculate directions.
+            </summary>
+            <remarks>
+            If you pass an address as a location, the Directions service will geocode the location
+            and convert it to a latitude/longitude coordinate to calculate directions.
+            </remarks>
+            <param name="origin">The starting location for the Directions request.</param>
+            <returns>Returns this <see cref="T:Google.Maps.WebServices.Directions.DirectionsRequestOptions" /> for call chaining.</returns>
+        </member>
         <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetPreferredRegion(System.String)">
             <summary>
             Set the region to influence results to use the given <paramref name="region" />.
@@ -2670,44 +2698,6 @@
             </summary>
             <param name="waypoints">The waypoints to add to this directions request.</param>
             <returns>Returns this <see cref="T:Google.Maps.WebServices.Directions.DirectionsRequestOptions" /> for call chaining.</returns>
-        </member>
-        <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetDestination(System.String)">
-            <summary>
-            The address or textual latitude/longitude value from which you wish to calculate directions.
-            </summary>
-            <remarks>
-            If you pass an address as a location, the Directions service will geocode the location
-            and convert it to a latitude/longitude coordinate to calculate directions.
-            </remarks>
-            <param name="destination">The ending location for the Directions request.</param>
-            <returns>Returns this <see cref="T:Google.Maps.WebServices.Directions.DirectionsRequestOptions" /> for call chaining.</returns>
-        </member>
-        <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.SetOrigin(System.String)">
-            <summary>
-            The address or textual latitude/longitude value from which you wish to calculate directions.
-            </summary>
-            <remarks>
-            If you pass an address as a location, the Directions service will geocode the location
-            and convert it to a latitude/longitude coordinate to calculate directions.
-            </remarks>
-            <param name="origin">The starting location for the Directions request.</param>
-            <returns>Returns this <see cref="T:Google.Maps.WebServices.Directions.DirectionsRequestOptions" /> for call chaining.</returns>
-        </member>
-        <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.BuildUri(System.String,System.String)">
-            <summary>
-            Gets the directions API request URI.
-            </summary>
-            <param name="origin">
-            The place ID, address, textual latitude/longitude value, <see cref="P:Google.Maps.WebServices.Common.PlusCode.GlobalCode"
-            /> or <see cref="P:Google.Maps.WebServices.Common.PlusCode.CompoundCode" /> value to use as a starting location to
-            calculate directions.
-            </param>
-            <param name="destination">
-            The place ID, address, textual latitude/longitude value, <see cref="P:Google.Maps.WebServices.Common.PlusCode.GlobalCode"
-            /> or <see cref="P:Google.Maps.WebServices.Common.PlusCode.CompoundCode" /> value to use as an ending location to
-            calculate directions.
-            </param>
-            <returns>The <see cref="T:System.Uri" /> of the request.</returns>
         </member>
         <member name="M:Google.Maps.WebServices.Directions.DirectionsRequestOptions.ValidateRequest">
             <inheritdoc />
@@ -3003,13 +2993,13 @@
             Serialization constructor.
             </summary>
         </member>
-        <member name="M:Google.Maps.WebServices.Directions.DirectionsResult.#ctor(System.Collections.Generic.List{Google.Maps.WebServices.Common.TravelMode},System.Collections.Generic.List{Google.Maps.WebServices.Directions.DirectionsGeocodedWaypoint},System.Collections.Generic.List{Google.Maps.WebServices.Directions.DirectionsRoute})">
+        <member name="M:Google.Maps.WebServices.Directions.DirectionsResult.#ctor(System.Collections.Generic.List{Google.Maps.WebServices.Directions.DirectionsRoute},System.Collections.Generic.List{Google.Maps.WebServices.Directions.DirectionsGeocodedWaypoint},System.Collections.Generic.List{Google.Maps.WebServices.Common.TravelMode})">
             <summary>
             Constructs an instance of the <see cref="T:Google.Maps.WebServices.Directions.DirectionsResult" /> class.
             </summary>
-            <param name="availableTravelModes">A collection of <see cref="T:Google.Maps.WebServices.Common.TravelMode" />.</param>
-            <param name="geocodedWaypoints">A collection of <see cref="T:Google.Maps.WebServices.Directions.DirectionsGeocodedWaypoint" />.</param>
             <param name="routes">A collection of <see cref="T:Google.Maps.WebServices.Directions.DirectionsRoute" />.</param>
+            <param name="geocodedWaypoints">A collection of <see cref="T:Google.Maps.WebServices.Directions.DirectionsGeocodedWaypoint" />.</param>
+            <param name="availableTravelModes">A collection of <see cref="T:Google.Maps.WebServices.Common.TravelMode" />.</param>
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsResult.AvailableTravelModes">
             <summary>
@@ -3020,8 +3010,8 @@
             The collection contains the available travel modes in the countries of the given set of waypoints.<br/>
             This field is not returned if one or more of the waypoints are 'via waypoints'.<br/>
             See <see
-            href="https://developers.google.com/maps/documentation/directions/get-directions#TravelMode">Geocoded
-            Waypoints</see> for more detail.
+            href="https://developers.google.com/maps/documentation/directions/get-directions#TravelMode">
+            TravelMode</see> for more detail.
             </remarks>
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsResult.GeocodedWaypoints">
@@ -3833,30 +3823,6 @@
         <member name="F:Google.Maps.WebServices.DistanceMatrix.DistanceMatrixElementStatus.MaxRouteLengthExceeded">
             <summary>
             Indicates the requested route is too long and cannot be processed.
-            </summary>
-        </member>
-        <member name="T:Google.Maps.WebServices.Eta.EtaRequestOptions">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Google.Maps.WebServices.Eta.EtaService">
-            <summary>
-            </summary>
-        </member>
-        <member name="P:Google.Maps.WebServices.Eta.EtaResult.Address">
-            <summary>
-            The human-readable address (typically a street address) reflecting the location.
-            </summary>
-        </member>
-        <member name="P:Google.Maps.WebServices.Eta.EtaResult.Location">
-            <summary>
-            The latitude/longitude coordinates.
-            </summary>
-        </member>
-        <member name="T:Google.Maps.WebServices.Eta.EtaWaypoint">
-            <summary>
-            
             </summary>
         </member>
         <member name="T:Google.Maps.WebServices.Geocoding.GeocodingRequestOptions">
@@ -4689,6 +4655,17 @@
             Constructs an instance of the <see cref="T:Google.Maps.WebServices.Exceptions.RequestDeniedException" /> class.
             </summary>
             <param name="errorMessage">The message that describes the error.</param>
+        </member>
+        <member name="T:Google.Maps.WebServices.Exceptions.RequestUriValidationException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Google.Maps.WebServices.Exceptions.RequestUriValidationException.#ctor(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Constructs an instance of the <see cref="T:Google.Maps.WebServices.Exceptions.RequestUriValidationException" /> class.
+            </summary>
+            <param name="validationFailures">A dictionary of validation failures.</param>
         </member>
         <member name="T:Google.Maps.WebServices.Exceptions.UnknownErrorException">
             <summary>

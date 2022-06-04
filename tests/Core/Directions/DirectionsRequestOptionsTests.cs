@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.Web;
 using Google.Maps.WebServices.Directions;
+using Google.Maps.WebServices.Exceptions;
 using Google.Maps.WebServices.Tests.Data;
 using Xunit;
 
@@ -148,6 +149,50 @@ namespace Google.Maps.WebServices.Tests.Core.Directions
 
             // Assert
             Assert.Throws<ArgumentException>(SetDepartureTime);
+        }
+
+        [Fact]
+        public void BuildUri_WithDirectionsRequestOptions_ReturnsUri()
+        {
+            // Arrange
+            const string expected = "origin=ORIGIN_TEST&destination=DESTINATION_TEST";
+
+            // Act
+            Uri request = _options.SetOrigin("ORIGIN_TEST").SetDestination("DESTINATION_TEST").BuildUri();
+
+            // Assert
+            Assert.IsType<Uri>(request);
+            Assert.Equal(expected, request.Query.Remove(0, 1));
+        }
+
+        [Fact]
+        public void BuildUri_WithEmptyDirectionsRequestOptions_ThrowsRequestUriValidationException()
+        {
+            // Act
+            void BuildUri() => _options.BuildUri();
+
+            // Assert
+            Assert.Throws<RequestUriValidationException>(BuildUri);
+        }
+
+        [Fact]
+        public void BuildUri_WithDirectionsRequestOptionsWithoutDestination_ThrowsRequestUriValidationException()
+        {
+            // Act
+            void BuildUri() => _options.SetOrigin("ORIGIN_TEST").BuildUri();
+
+            // Assert
+            Assert.Throws<RequestUriValidationException>(BuildUri);
+        }
+
+        [Fact]
+        public void BuildUri_WithDirectionsRequestOptionsWithoutOrigin_ThrowsRequestUriValidationException()
+        {
+            // Act
+            void BuildUri() => _options.SetDestination("DESTINATION_TEST").BuildUri();
+
+            // Assert
+            Assert.Throws<RequestUriValidationException>(BuildUri);
         }
     }
 }

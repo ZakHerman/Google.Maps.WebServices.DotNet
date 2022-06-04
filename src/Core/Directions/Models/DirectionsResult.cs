@@ -22,14 +22,14 @@ namespace Google.Maps.WebServices.Directions
         /// <summary>
         /// Constructs an instance of the <see cref="DirectionsResult" /> class.
         /// </summary>
-        /// <param name="availableTravelModes">A collection of <see cref="TravelMode" />.</param>
-        /// <param name="geocodedWaypoints">A collection of <see cref="DirectionsGeocodedWaypoint" />.</param>
         /// <param name="routes">A collection of <see cref="DirectionsRoute" />.</param>
-        public DirectionsResult(List<TravelMode> availableTravelModes, List<DirectionsGeocodedWaypoint> geocodedWaypoints, List<DirectionsRoute> routes)
+        /// <param name="geocodedWaypoints">A collection of <see cref="DirectionsGeocodedWaypoint" />.</param>
+        /// <param name="availableTravelModes">A collection of <see cref="TravelMode" />.</param>
+        public DirectionsResult(List<DirectionsRoute> routes, List<DirectionsGeocodedWaypoint> geocodedWaypoints, List<TravelMode> availableTravelModes)
         {
-            AvailableTravelModes = availableTravelModes;
-            GeocodedWaypoints = geocodedWaypoints;
             Routes = routes;
+            GeocodedWaypoints = geocodedWaypoints;
+            AvailableTravelModes = availableTravelModes;
         }
 
         /// <summary>
@@ -40,8 +40,8 @@ namespace Google.Maps.WebServices.Directions
         /// The collection contains the available travel modes in the countries of the given set of waypoints.<br/>
         /// This field is not returned if one or more of the waypoints are 'via waypoints'.<br/>
         /// See <see
-        /// href="https://developers.google.com/maps/documentation/directions/get-directions#TravelMode">Geocoded
-        /// Waypoints</see> for more detail.
+        /// href="https://developers.google.com/maps/documentation/directions/get-directions#TravelMode">
+        /// TravelMode</see> for more detail.
         /// </remarks>
         [JsonProperty("available_travel_modes")]
         public List<TravelMode> AvailableTravelModes { get; } = new List<TravelMode>();

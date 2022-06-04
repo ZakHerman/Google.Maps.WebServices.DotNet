@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Google.Maps.WebServices.Exceptions;
 using Google.Maps.WebServices.Extensions;
 
 namespace Google.Maps.WebServices.Common
@@ -10,7 +13,9 @@ namespace Google.Maps.WebServices.Common
     {
         private const string GoogleMapsUrlHostName = "https://maps.googleapis.com";
         private const int RequestUrlCharacterLimit = 8192;
-        protected readonly UriBuilder _uriBuilder;
+        private readonly UriBuilder _uriBuilder;
+
+        private protected IDictionary<string, string> ValidationFailures { get; } = new Dictionary<string, string>();
 
         /// <summary>
         /// Constructs an instance of the <see cref="GoogleMapsRequestOptions{T}" /> class.
@@ -44,6 +49,17 @@ namespace Google.Maps.WebServices.Common
         internal Uri Uri => _uriBuilder.Uri;
 
         /// <summary>
+        /// Gets the request URI.
+        /// </summary>
+        /// <returns>A <see cref="System.Uri" /> of the request.</returns>
+        public Uri BuildUri()
+        {
+            ValidateRequest();
+
+            return _uriBuilder.Uri;
+        }
+
+        /// <summary>
         /// Sets a custom query parameter.
         /// </summary>
         /// <param name="key">The key of the custom parameter.</param>
@@ -75,9 +91,6 @@ namespace Google.Maps.WebServices.Common
         /// <returns>Returns this instance for call chaining.</returns>
         internal T SetAuthentication(string apiKey)
         {
-            //if (!apiKey.StartsWith("AIza"))
-            //    throw new InvalidOperationException("Invalid API key.");
-
             return SetQueryParameter("key", apiKey);
         }
 
@@ -88,7 +101,10 @@ namespace Google.Maps.WebServices.Common
         internal virtual void ValidateRequest()
         {
             if (Uri.AbsoluteUri.Length >= RequestUrlCharacterLimit)
-                throw new InvalidOperationException($"Url cannot contain more than {RequestUrlCharacterLimit} characters.");
+                ValidationFailures.Add("URL length", $"URL cannot contain more than {RequestUrlCharacterLimit} characters.");
+
+            if (ValidationFailures.Any())
+                throw new RequestUriValidationException(ValidationFailures);
         }
 
         /// <summary>

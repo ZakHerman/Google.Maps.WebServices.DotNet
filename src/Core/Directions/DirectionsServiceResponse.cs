@@ -22,7 +22,7 @@ namespace Google.Maps.WebServices.Directions
         public ApiResponseStatus ResponseStatus { get; set; }
 
         /// <inheritdoc />
-        public DirectionsResult Result => new DirectionsResult(AvailableTravelModes, GeocodedWaypoints, Routes);
+        public DirectionsResult Result => new DirectionsResult(Routes, GeocodedWaypoints, AvailableTravelModes);
 
         [JsonProperty("available_travel_modes")]
         private List<TravelMode> AvailableTravelModes { get; } = new List<TravelMode>();

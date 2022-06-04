@@ -55,7 +55,7 @@ namespace Google.Maps.WebServices.Directions
         /// /> or <see cref="PlusCode.CompoundCode" /> value to use as an ending location to
         /// calculate directions.
         /// </param>
-        public DirectionsRequestOptions(string origin, string destination) : base(DirectionsUrlPath)
+        internal DirectionsRequestOptions(string origin, string destination) : base(DirectionsUrlPath)
         {
             if (string.IsNullOrWhiteSpace(origin))
                 throw new ArgumentException("Value cannot be null, empty or white space.", nameof(origin));
@@ -167,6 +167,36 @@ namespace Google.Maps.WebServices.Directions
         public DirectionsRequestOptions SetDepartureTimeNow()
         {
             return SetQueryParameter("departure_time", "now");
+        }
+
+        /// <summary>
+        /// The address or textual latitude/longitude value from which you wish to calculate directions.
+        /// </summary>
+        /// <remarks>
+        /// If you pass an address as a location, the Directions service will geocode the location
+        /// and convert it to a latitude/longitude coordinate to calculate directions.
+        /// </remarks>
+        /// <param name="destination">The ending location for the Directions request.</param>
+        /// <returns>Returns this <see cref="DirectionsRequestOptions" /> for call chaining.</returns>
+        public DirectionsRequestOptions SetDestination(string destination)
+        {
+            Destination = destination;
+            return SetQueryParameter("destination", destination);
+        }
+
+        /// <summary>
+        /// The address or textual latitude/longitude value from which you wish to calculate directions.
+        /// </summary>
+        /// <remarks>
+        /// If you pass an address as a location, the Directions service will geocode the location
+        /// and convert it to a latitude/longitude coordinate to calculate directions.
+        /// </remarks>
+        /// <param name="origin">The starting location for the Directions request.</param>
+        /// <returns>Returns this <see cref="DirectionsRequestOptions" /> for call chaining.</returns>
+        public DirectionsRequestOptions SetOrigin(string origin)
+        {
+            Origin = origin;
+            return SetQueryParameter("origin", origin);
         }
 
         /// <summary>
@@ -336,78 +366,20 @@ namespace Google.Maps.WebServices.Directions
             return SetWaypoints(newWaypoints);
         }
 
-        /// <summary>
-        /// The address or textual latitude/longitude value from which you wish to calculate directions.
-        /// </summary>
-        /// <remarks>
-        /// If you pass an address as a location, the Directions service will geocode the location
-        /// and convert it to a latitude/longitude coordinate to calculate directions.
-        /// </remarks>
-        /// <param name="destination">The ending location for the Directions request.</param>
-        /// <returns>Returns this <see cref="DirectionsRequestOptions" /> for call chaining.</returns>
-        internal DirectionsRequestOptions SetDestination(string destination)
-        {
-            Destination = destination;
-            return SetQueryParameter("destination", destination);
-        }
-
-        /// <summary>
-        /// The address or textual latitude/longitude value from which you wish to calculate directions.
-        /// </summary>
-        /// <remarks>
-        /// If you pass an address as a location, the Directions service will geocode the location
-        /// and convert it to a latitude/longitude coordinate to calculate directions.
-        /// </remarks>
-        /// <param name="origin">The starting location for the Directions request.</param>
-        /// <returns>Returns this <see cref="DirectionsRequestOptions" /> for call chaining.</returns>
-        internal DirectionsRequestOptions SetOrigin(string origin)
-        {
-            Origin = origin;
-            return SetQueryParameter("origin", origin);
-        }
-
-        /// <summary>
-        /// Gets the directions API request URI.
-        /// </summary>
-        /// <param name="origin">
-        /// The place ID, address, textual latitude/longitude value, <see cref="PlusCode.GlobalCode"
-        /// /> or <see cref="PlusCode.CompoundCode" /> value to use as a starting location to
-        /// calculate directions.
-        /// </param>
-        /// <param name="destination">
-        /// The place ID, address, textual latitude/longitude value, <see cref="PlusCode.GlobalCode"
-        /// /> or <see cref="PlusCode.CompoundCode" /> value to use as an ending location to
-        /// calculate directions.
-        /// </param>
-        /// <returns>The <see cref="Uri" /> of the request.</returns>
-        public Uri BuildUri(string origin, string destination)
-        {
-            if (string.IsNullOrWhiteSpace(origin))
-                throw new ArgumentException("Value cannot be null, empty or white space.", nameof(origin));
-
-            if (string.IsNullOrWhiteSpace(destination))
-                throw new ArgumentException("Value cannot be null, empty or white space.", nameof(destination));
-
-            SetOrigin(origin);
-            SetDestination(destination);
-
-            return _uriBuilder.Uri;
-        }
-
         /// <inheritdoc />
         internal override void ValidateRequest()
         {
             if (!ContainsQueryParameter("origin"))
-                throw new InvalidOperationException("Invalid request. Missing the 'origin' parameter.");
+                ValidationFailures.Add("origin", "Invalid request. Missing the 'origin' parameter.");
 
             if (!ContainsQueryParameter("destination"))
-                throw new InvalidOperationException("Invalid request. Missing the 'destination' parameter.");
+                ValidationFailures.Add("destination", "Invalid request. Missing the 'destination' parameter.");
 
             if (ContainsQueryParameter("arrival_time") && ContainsQueryParameter("departure_time"))
-                throw new InvalidOperationException("Transit request must not contain both an 'arrival_time' and a 'departure_time'");
+                ValidationFailures.Add("arrival_time", "Transit request must not contain both an 'arrival_time' and a 'departure_time'.");
 
             if (ContainsQueryParameter("traffic_model") && !ContainsQueryParameter("departure_time"))
-                throw new InvalidOperationException("Specifying a traffic model requires that 'departure_time' be provided.");
+                ValidationFailures.Add("traffic_model", "Specifying a traffic model requires that 'departure_time' be provided.");
 
             base.ValidateRequest();
         }

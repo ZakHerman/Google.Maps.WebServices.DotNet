@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using Google.Maps.WebServices.Common;
 using Google.Maps.WebServices.Directions;
 using Google.Maps.WebServices.Tests.TestHelpers;
