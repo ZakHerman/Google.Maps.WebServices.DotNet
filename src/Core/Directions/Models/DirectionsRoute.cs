@@ -41,7 +41,7 @@ namespace Google.Maps.WebServices.Directions
         /// </summary>
         /// <remarks>A route with no waypoints will contain exactly one leg within the legs collection.</remarks>
         [JsonProperty("legs")]
-        public List<DirectionsLeg> Legs { get; } = new List<DirectionsLeg>();
+        public List<DirectionsLeg> Legs { get; private set; } = new List<DirectionsLeg>();
 
         /// <summary>
         /// Contains an object that holds an encoded polyline representation of the route.
@@ -72,6 +72,32 @@ namespace Google.Maps.WebServices.Directions
         /// </remarks>
         [JsonProperty("waypoint_order")]
         public List<int> WaypointOrder { get; private set; } = new List<int>();
+
+        /// <summary>
+        /// Merges two routes into one.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns>A single <see cref="DirectionsRoute" />.</returns>
+        public static DirectionsRoute Merge(DirectionsRoute a, DirectionsRoute b)
+        {
+            if (a is null)
+                throw new ArgumentNullException(nameof(a));
+
+            if (b is null)
+                throw new ArgumentNullException(nameof(b));
+
+            return new DirectionsRoute
+            {
+                Bounds = Bounds.Merge(a.Bounds, b.Bounds),
+                Copyrights = a.Copyrights ?? b.Copyrights,
+                Legs = a.Legs.Concat(b.Legs).ToList(),
+                OverviewPolyline = DirectionsPolyline.Merge(a.OverviewPolyline, b.OverviewPolyline),
+                Summary = a.Summary ?? b.Summary,
+                Warnings = a.Warnings.Concat(b.Warnings).ToList(),
+                WaypointOrder = a.WaypointOrder.Concat(b.WaypointOrder.Select(x => a.WaypointOrder.Max() + x + 1)).ToList()
+            };
+        }
 
         /// <inheritdoc />
         public override string ToString()

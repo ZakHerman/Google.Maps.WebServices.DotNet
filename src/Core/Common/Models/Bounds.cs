@@ -26,7 +26,7 @@ namespace Google.Maps.WebServices.Common
         /// <param name="a">The first <see cref="Bounds" />.</param>
         /// <param name="b">The second <see cref="Bounds" />.</param>
         /// <returns>The combined <see cref="Bounds" />.</returns>
-        internal static Bounds Merge(Bounds a, Bounds b)
+        public static Bounds Merge(Bounds a, Bounds b)
         {
             if (a?.NorthEast is null && b?.NorthEast is null)
                 throw new ArgumentException($"Both bounds '{nameof(NorthEast)}' value are null.");

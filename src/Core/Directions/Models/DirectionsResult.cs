@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Google.Maps.WebServices.Common;
 using Newtonsoft.Json;
 
@@ -67,5 +68,28 @@ namespace Google.Maps.WebServices.Directions
         /// </remarks>
         [JsonProperty("routes")]
         public List<DirectionsRoute> Routes { get; } = new List<DirectionsRoute>();
+
+        /// <summary>
+        /// Merges two directions results into one.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns>A single <see cref="DirectionsResult" />.</returns>
+        public static DirectionsResult Merge(DirectionsResult a, DirectionsResult b)
+        {
+            var geocodedWaypoints = a.GeocodedWaypoints.Concat(b.GeocodedWaypoints).ToList();
+            List<DirectionsRoute> directionsRoutes = new List<DirectionsRoute>();
+            List<TravelMode> travelModes = a.AvailableTravelModes.Concat(b.AvailableTravelModes).ToList();
+
+            for (int i = 0; i < a.Routes.Count || i == 0; i++)
+            {
+                for (int j = 0; j < b.Routes.Count || j == 0; j++)
+                {
+                    directionsRoutes.Add(DirectionsRoute.Merge(a.Routes[i], b.Routes[j]));
+                }
+            }
+
+            return new DirectionsResult(directionsRoutes, geocodedWaypoints, travelModes);
+        }
     }
 }

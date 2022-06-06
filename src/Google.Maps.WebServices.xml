@@ -120,6 +120,12 @@
             The request URI.
             </summary>
         </member>
+        <member name="M:Google.Maps.WebServices.Common.GoogleMapsRequestOptions`1.BuildUri">
+            <summary>
+            Gets the request URI.
+            </summary>
+            <returns>A <see cref="T:System.Uri" /> of the request.</returns>
+        </member>
         <member name="M:Google.Maps.WebServices.Common.GoogleMapsRequestOptions`1.SetCustomParameter(System.String,System.String)">
             <summary>
             Sets a custom query parameter.
@@ -151,12 +157,6 @@
             Validates that the request query is structured correctly according to the provided
             Google Maps Web Service documentation.
             </summary>
-        </member>
-        <member name="M:Google.Maps.WebServices.Common.GoogleMapsRequestOptions`1.BuildUri">
-            <summary>
-            Gets the request URI.
-            </summary>
-            <returns>The <see cref="P:Google.Maps.WebServices.Common.GoogleMapsRequestOptions`1.Uri" /> of the request.</returns>
         </member>
         <member name="M:Google.Maps.WebServices.Common.GoogleMapsRequestOptions`1.ContainsQueryParameter(System.String)">
             <summary>
@@ -2718,6 +2718,23 @@
             documentation</see> for more detail.
             </remarks>
         </member>
+        <member name="M:Google.Maps.WebServices.Directions.DirectionsService.GetDirectionsAsync(Google.Maps.WebServices.GoogleMapsServiceClient,Google.Maps.WebServices.Directions.DirectionsRequestOptions,System.Threading.CancellationToken)">
+            <summary>
+            Requests the directions between the given origin and destination.
+            </summary>
+            <param name="client">
+            The instance of <see cref="T:Google.Maps.WebServices.GoogleMapsServiceClient" /> used to send the request.
+            </param>
+            <param name="options">
+            A <see cref="T:Google.Maps.WebServices.Directions.DirectionsRequestOptions" /> used to set additional request query parameters.
+            </param>
+            <param name="cancellationToken">
+            A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+            </param>
+            <returns>
+            A <see cref="T:Google.Maps.WebServices.Common.GoogleMapsResponse`1" /> between the given origin and destination.
+            </returns>
+        </member>
         <member name="M:Google.Maps.WebServices.Directions.DirectionsService.GetDirectionsAsync(Google.Maps.WebServices.GoogleMapsServiceClient,System.String,System.String,Google.Maps.WebServices.Directions.DirectionsRequestOptions,System.Threading.CancellationToken)">
             <summary>
             Requests the directions between the given <paramref name="origin" /> and <paramref
@@ -2976,6 +2993,13 @@
             A single string representation of the polyline.
             </summary>
         </member>
+        <member name="M:Google.Maps.WebServices.Directions.DirectionsPolyline.Merge(Google.Maps.WebServices.Directions.DirectionsPolyline[])">
+            <summary>
+            Merge two or more poly lines.
+            </summary>
+            <param name="encodedPolylines">A collection of polylines.</param>
+            <returns>A single <see cref="T:Google.Maps.WebServices.Directions.DirectionsPolyline" />.</returns>
+        </member>
         <member name="M:Google.Maps.WebServices.Directions.DirectionsPolyline.ToString">
             <inheritdoc />
         </member>
@@ -3034,6 +3058,14 @@
             for more detail.
             </remarks>
         </member>
+        <member name="M:Google.Maps.WebServices.Directions.DirectionsResult.Merge(Google.Maps.WebServices.Directions.DirectionsResult,Google.Maps.WebServices.Directions.DirectionsResult)">
+            <summary>
+            Merges two directions results into one.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns>A single <see cref="T:Google.Maps.WebServices.Directions.DirectionsResult" />.</returns>
+        </member>
         <member name="T:Google.Maps.WebServices.Directions.DirectionsRoute">
             <summary>
             A route consists of nested legs and steps.
@@ -3090,6 +3122,14 @@
             The waypoints may be reordered if the request was passed <c>optimize:true</c> within its
             <c>waypoints</c> parameter.
             </remarks>
+        </member>
+        <member name="M:Google.Maps.WebServices.Directions.DirectionsRoute.Merge(Google.Maps.WebServices.Directions.DirectionsRoute,Google.Maps.WebServices.Directions.DirectionsRoute)">
+            <summary>
+            Merges two routes into one.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns>A single <see cref="T:Google.Maps.WebServices.Directions.DirectionsRoute" />.</returns>
         </member>
         <member name="M:Google.Maps.WebServices.Directions.DirectionsRoute.ToString">
             <inheritdoc />
@@ -4658,7 +4698,7 @@
         </member>
         <member name="T:Google.Maps.WebServices.Exceptions.RequestUriValidationException">
             <summary>
-            
+            Indicates that there was an error with request validation.
             </summary>
         </member>
         <member name="M:Google.Maps.WebServices.Exceptions.RequestUriValidationException.#ctor(System.Collections.Generic.IDictionary{System.String,System.String})">

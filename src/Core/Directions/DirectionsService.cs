@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Google.Maps.WebServices.Common;
 
@@ -20,6 +21,30 @@ namespace Google.Maps.WebServices.Directions
     /// </remarks>
     public static class DirectionsService
     {
+        /// <summary>
+        /// Requests the directions between the given origin and destination.
+        /// </summary>
+        /// <param name="client">
+        /// The instance of <see cref="GoogleMapsServiceClient" /> used to send the request.
+        /// </param>
+        /// <param name="options">
+        /// A <see cref="DirectionsRequestOptions" /> used to set additional request query parameters.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>
+        /// A <see cref="GoogleMapsResponse{DirectionsResult}" /> between the given origin and destination.
+        /// </returns>
+        public static Task<GoogleMapsResponse<DirectionsResult>> GetDirectionsAsync(this GoogleMapsServiceClient client,
+            DirectionsRequestOptions options, CancellationToken cancellationToken = default)
+        {
+            if (options is null)
+                throw new ArgumentNullException(nameof(options), "Value cannot be null.");
+
+            return client.GetAsync<DirectionsRequestOptions, DirectionsServiceResponse, DirectionsResult>(options, cancellationToken);
+        }
+
         /// <summary>
         /// Requests the directions between the given <paramref name="origin" /> and <paramref
         /// name="destination" />.
