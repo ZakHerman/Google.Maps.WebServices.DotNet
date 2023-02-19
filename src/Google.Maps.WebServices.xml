@@ -43,6 +43,20 @@
             </param>
             <returns>The <see cref="T:Google.Maps.WebServices.Common.GoogleMapsResponse`1" /> class.</returns>
         </member>
+        <member name="M:Google.Maps.WebServices.GoogleMapsServiceClient.PostAsync``3(System.Uri,``0,System.Threading.CancellationToken)">
+            <summary>
+            Sends a POST request to the web service.
+            </summary>
+            <typeparam name="TRequest">The request body class.</typeparam>
+            <typeparam name="TResponse">The <see cref="T:Google.Maps.WebServices.Common.GoogleMapsResponse`1" /> class.</typeparam>
+            <typeparam name="TResult">The Google Maps Web Service result class.</typeparam>
+            <param name="uri">The request URI.</param>
+            <param name="request">The instance of the Google Maps Web Service request builder class.</param>
+            <param name="cancellationToken">
+            A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+            </param>
+            <returns>The <see cref="T:Google.Maps.WebServices.Common.GoogleMapsResponse`1" /> class.</returns>
+        </member>
         <member name="T:Google.Maps.WebServices.Converters.DefaultUnknownEnumConverter">
             <inheritdoc />
         </member>
@@ -88,6 +102,549 @@
             <returns>
             The deserialized value of the enum if it exists or the default value if it does not.
             </returns>
+        </member>
+        <member name="T:Google.Maps.WebServices.AddressValidation.AddressValidationRequest">
+            <summary>
+            The request body for validation an address.
+            </summary>
+        </member>
+        <member name="M:Google.Maps.WebServices.AddressValidation.AddressValidationRequest.#ctor">
+            <summary>
+            Constructs an instance of the <see cref="T:Google.Maps.WebServices.AddressValidation.AddressValidationRequest" /> class.
+            </summary>
+        </member>
+        <member name="M:Google.Maps.WebServices.AddressValidation.AddressValidationRequest.#ctor(Google.Maps.WebServices.AddressValidation.PostalAddress,System.String,System.Boolean)">
+            <summary>
+            Constructs an instance of the <see cref="T:Google.Maps.WebServices.AddressValidation.AddressValidationRequest" /> class.
+            </summary>
+            <param name="address">The address being validated.</param>
+            <param name="previousResponseId">The previous response ID.</param>
+            <param name="enableUspsCass">Enable USPS CASS.</param>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationRequest.Address">
+            <summary>
+            The address being validated.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationRequest.PreviousResponseId">
+            <summary>
+            This field must be empty for the first address validation request.
+            </summary>
+            <remarks>
+            If more requests are necessary to fully validate a single address (for example if
+            the changes the user makes after the initial validation need to be re-validated),
+            then each followup request must populate this field with the responseId from the
+            very first response in the validation sequence.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationRequest.EnableUspsCass">
+            <summary>
+            Enables USPS CASS compatible mode.
+            </summary>
+        </member>
+        <member name="T:Google.Maps.WebServices.AddressValidation.AddressValidationService">
+            <summary>
+            The Address Validation API is a service that accepts an address, identifies the address
+            components, and validates them.
+            </summary>
+            <remarks>
+            It also standardizes the address for mailing and finds the best known lat/long location
+            for it. It can help understand if an address refers to a real place. If the address does
+            not refer to a real place, it can identify possibly wrong components, enabling users to
+            correct them.
+            </remarks>
+        </member>
+        <member name="M:Google.Maps.WebServices.AddressValidation.AddressValidationService.ValidateAddressAsync(Google.Maps.WebServices.GoogleMapsServiceClient,Google.Maps.WebServices.AddressValidation.PostalAddress,System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Validates an address.
+            </summary>
+            <param name="client">The instance of <see cref="T:Google.Maps.WebServices.GoogleMapsServiceClient" /> used to send the request.</param>
+            <param name="address">The address being validated.</param>
+            <param name="previousResponseId"></param>
+            <param name="enableUspsCass">Enables USPS CASS compatible mode.</param>
+            <param name="cancellationToken">
+            A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+            </param>
+            <returns>A <see cref="T:Google.Maps.WebServices.Common.GoogleMapsResponse`1" />.</returns>
+        </member>
+        <member name="T:Google.Maps.WebServices.AddressValidation.AddressValidationServiceResponse">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationServiceResponse.ErrorMessage">
+            <inheritdoc />
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationServiceResponse.IsSuccessful">
+            <inheritdoc />
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationServiceResponse.ResponseStatus">
+            <inheritdoc />
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationServiceResponse.Result">
+            <inheritdoc />
+        </member>
+        <member name="T:Google.Maps.WebServices.AddressValidation.Address">
+            <summary>
+            Details of the address parsed from the input.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.Address.AddressComponents">
+            <summary>
+            The individual address components of the formatted and corrected address,
+            along with validation information.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.Address.FormattedAddress">
+            <summary>
+            The corrected address, formatted as a single-line address following the address
+            formatting rules of the region where the address is located.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.Address.MissingComponentTypes">
+            <summary>
+            The types of components that were expected to be present in a correctly formatted
+            mailing address but were not found in the input AND could not be inferred.
+            </summary>
+            <remarks>
+            Components of this type are not present in <see cref="P:Google.Maps.WebServices.AddressValidation.Address.FormattedAddress" />,
+            <see cref="P:Google.Maps.WebServices.AddressValidation.Address.PostalAddress" />, or <see cref="P:Google.Maps.WebServices.AddressValidation.Address.AddressComponents" />.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.Address.PostalAddress">
+            <summary>
+            The validated address represented as a postal address.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.Address.UnconfirmedComponentTypes">
+            <summary>
+            The types of the components that are present in the <see cref="P:Google.Maps.WebServices.AddressValidation.Address.AddressComponents"/> but
+            could not be confirmed to be correct.
+            </summary>
+            <remarks>
+            This field is provided for the sake of convenience: its contents are equivalent to iterating
+            through the <see cref="P:Google.Maps.WebServices.AddressValidation.Address.AddressComponents" /> to find the types of all the components where
+            the confirmationLevel is not CONFIRMED or the inferred flag is not set to true.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.Address.UnresolvedTokens">
+            <summary>
+            Any tokens in the input that could not be resolved.
+            </summary>
+            <remarks>
+            This might be an input that was not recognized as a valid part of an address (for example in an
+            input like "123235253253 Main St, San Francisco, CA, 94105", the unresolved tokens may look like
+            ["123235253253"] since that does not look like a valid street number.
+            </remarks>
+        </member>
+        <member name="T:Google.Maps.WebServices.AddressValidation.AddressComponent">
+            <summary>
+            Represents an address component, such as a street, city, or state.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressComponent.ComponentName">
+            <summary>
+            The name for this component.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressComponent.ComponentType">
+            <summary>
+            The type of the address component.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressComponent.ConfirmationLevel">
+            <summary>
+            Indicates the level of certainty that the component is correct.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressComponent.Inferred">
+            <summary>
+            Indicates that the component was not part of the input, but we inferred it for
+            the address location and believe it should be provided for a complete address.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressComponent.SpellCorrected">
+            <summary>
+            Indicates the spelling of the component name was corrected in a minor way.
+            </summary>
+            <remarks>
+            For example by switching two characters that appeared in the wrong order.
+            This indicates a cosmetic change.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressComponent.Replaced">
+            <summary>
+            Indicates the name of the component was replaced with a completely different one.
+            </summary>
+            <remarks>
+            For example a wrong postal code being replaced with one that is correct for the address.
+            This is not a cosmetic change, the input component has been changed to a different one.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressComponent.Unexpected">
+            <summary>
+            Indicates an address component that is not expected to be present in a postal address for
+            the given region. We have retained it only because it was part of the input.
+            </summary>
+        </member>
+        <member name="T:Google.Maps.WebServices.AddressValidation.AddressComponentName">
+            <summary>
+            A wrapper for the name of the component.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressComponentName.LanguageCode">
+            <summary>
+            The name text.
+            </summary>
+            <remarks>
+            For example, "5th Avenue" for a street name or "1253" for a street number.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressComponentName.Text">
+            <summary>
+            The BCP-47 language code.
+            </summary>
+            <remarks>
+            This will not be present if the component name is not associated with a language, such as a street number.
+            </remarks>
+        </member>
+        <member name="T:Google.Maps.WebServices.AddressValidation.AddressValidationGeocode">
+            <summary>
+            Contains information about the place the input was geocoded to.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationGeocode.Bounds">
+            <summary>
+            The bounds of the geocoded place.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationGeocode.FeatureSizeMeters">
+            <summary>
+            The size of the geocoded place, in meters.
+            </summary>
+            <remarks>
+            This is another measure of the coarseness of the geocoded location,
+            but in physical size rather than in semantic meaning.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationGeocode.Location">
+            <summary>
+            The geocoded location of the input.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationGeocode.PlaceId">
+            <summary>
+            The PlaceID of the place this input geocodes to.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationGeocode.PlaceTypes">
+            <summary>
+            The type(s) of place that the input geocoded to.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationGeocode.PlusCode">
+            <summary>
+            The plus code corresponding to the <see cref="P:Google.Maps.WebServices.AddressValidation.AddressValidationGeocode.Location" />.
+            </summary>
+        </member>
+        <member name="T:Google.Maps.WebServices.AddressValidation.AddressValidationMetaData">
+            <summary>
+            The metadata for the address.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationMetaData.Business">
+            <summary>
+            Indicates that this is the address of a business. If unset,
+            indicates that the value is unknown.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationMetaData.PoBox">
+            <summary>
+            Indicates that the address of a PO box. If unset,
+            indicates that the value is unknown.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationMetaData.Residential">
+            <summary>
+            Indicates that this is the address of a residence. If unset,
+            indicates that the value is unknown.
+            </summary>
+        </member>
+        <member name="T:Google.Maps.WebServices.AddressValidation.AddressValidationResponse">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Google.Maps.WebServices.AddressValidation.AddressValidationResponse.#ctor">
+            <summary>
+            Serialization constructor.
+            </summary>
+        </member>
+        <member name="M:Google.Maps.WebServices.AddressValidation.AddressValidationResponse.#ctor(Google.Maps.WebServices.AddressValidation.AddressValidationResult,System.String)">
+            <summary>
+            Constructs an instance of the <see cref="T:Google.Maps.WebServices.AddressValidation.AddressValidationResponse" /> class.
+            </summary>
+            <param name="addressValidationResult">A <see cref="P:Google.Maps.WebServices.AddressValidation.AddressValidationResponse.AddressValidationResult" />.</param>
+            <param name="responseId">A <see cref="P:Google.Maps.WebServices.AddressValidation.AddressValidationResponse.ResponseId" />.</param>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationResponse.AddressValidationResult">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationResponse.ResponseId">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Google.Maps.WebServices.AddressValidation.AddressValidationResult">
+            <summary>
+            The result of validating an address.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationResult.Address">
+            <summary>
+            Information about the address itself as opposed to the geocode.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationResult.Geocode">
+            <summary>
+            Information about the location and place that the address geocoded to.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationResult.MetaData">
+            <summary>
+            Other information relevant to deliverability.
+            </summary>
+            <remarks>
+            <see cref="P:Google.Maps.WebServices.AddressValidation.AddressValidationResult.MetaData" /> is not guaranteed to be fully populated for every address
+            sent to the Address Validation API.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationResult.Verdict">
+            <summary>
+            Overall verdict flags.
+            </summary>
+        </member>
+        <member name="T:Google.Maps.WebServices.AddressValidation.AddressValidationVerdict">
+            <summary>
+            High level overview of the address validation result and geocode.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationVerdict.AddressComplete">
+            <summary>
+            The address is considered complete if there are no unresolved tokens,
+            no unexpected or missing address components.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationVerdict.HasInferredComponents">
+            <summary>
+            At least one address component was inferred (added) that wasn't in the input.
+            </summary>
+            <remarks>
+            See <see cref="T:Google.Maps.WebServices.AddressValidation.AddressComponent">Address Components</see> for details.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationVerdict.HasReplacedComponents">
+            <summary>
+            At least one address component was replaced.
+            </summary>
+            <remarks>
+            See <see cref="T:Google.Maps.WebServices.AddressValidation.AddressComponent">Address Components</see> for details.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationVerdict.HasUnconfirmedComponents">
+            <summary>
+            At least one address component cannot be categorized or validated.
+            </summary>
+            <remarks>
+            See <see cref="T:Google.Maps.WebServices.AddressValidation.AddressComponent">Address Components</see> for details.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationVerdict.GeocodeGranularity">
+            <summary>
+            Information about the granularity of the geocode.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationVerdict.InputGranularity">
+            <summary>
+            The granularity of the input address.
+            </summary>
+            <remarks>
+            This is the result of parsing the input address and does not give any validation signals.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationVerdict.ValidationGranularity">
+            <summary>
+            The granularity level that the API can fully validate the address to.
+            </summary>
+        </member>
+        <member name="T:Google.Maps.WebServices.AddressValidation.AddressConfirmationLevel">
+            <summary>
+            The different possible values for confirmation levels.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.AddressValidation.AddressConfirmationLevel.Unspecified">
+            <summary>
+            Default value. This value is unused.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.AddressValidation.AddressConfirmationLevel.Confirmed">
+            <summary>
+            Component verified and exists and makes sense in the context of the rest of the address.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.AddressValidation.AddressConfirmationLevel.Plausible">
+            <summary>
+            This component could not be confirmed, but it is plausible that it exists.
+            </summary>
+            <remarks>
+            For example, a street number within a known valid range of numbers on a street where
+            specific house numbers are not known.
+            </remarks>
+        </member>
+        <member name="F:Google.Maps.WebServices.AddressValidation.AddressConfirmationLevel.Suspicious">
+            <summary>
+            This component was not confirmed and is likely to be wrong.
+            </summary>
+            <remarks>
+            For example, a neighborhood that does not fit the rest of the address.
+            </remarks>
+        </member>
+        <member name="T:Google.Maps.WebServices.AddressValidation.AddressValidationGranularity">
+            <summary>
+            The various granularities that an address or a geocode can have.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.AddressValidation.AddressValidationGranularity.GranularityUnspecified">
+            <summary>
+            Default value. This value is unused.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.AddressValidation.AddressValidationGranularity.SubPremise">
+            <summary>
+            Below-building level result, such as an apartment.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.AddressValidation.AddressValidationGranularity.Premise">
+            <summary>
+            Building-level result.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.AddressValidation.AddressValidationGranularity.PremiseProximity">
+            <summary>
+            A geocode that should be very close to the building-level location of the address.
+            Only used for geocodes and not for addresses.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.AddressValidation.AddressValidationGranularity.Block">
+            <summary>
+            The address or geocode indicates a block. Only used in regions which have block-level addressing, such as Japan.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.AddressValidation.AddressValidationGranularity.Route">
+            <summary>
+            The geocode or address is granular to route, such as a street, road, or highway.
+            </summary>
+        </member>
+        <member name="F:Google.Maps.WebServices.AddressValidation.AddressValidationGranularity.Other">
+            <summary>
+            All other granularities, which are bucketed together since they are not deliverable.
+            </summary>
+        </member>
+        <member name="T:Google.Maps.WebServices.AddressValidation.PostalAddress">
+            <summary>
+            Represents a postal address.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.PostalAddress.AdministrativeArea">
+            <summary>
+            Highest administrative subdivision which is used for postal addresses of a country or region.
+            </summary>
+            <remarks>
+            For example, this can be a state, a province, an oblast, or a prefecture.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.PostalAddress.AddressLines">
+            <summary>
+            Unstructured address lines describing the lower levels of an address.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.PostalAddress.LanguageCode">
+            <summary>
+            The language code in the input address is reserved for future uses and is ignored today.
+            </summary>
+            <remarks>
+            The API returns the address in the appropriate language for where the address is located.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.PostalAddress.Locality">
+            <summary>
+            Generally refers to the city/town portion of the address.
+            </summary>
+            <remarks>
+            In regions of the world where localities are not well defined or do not fit into this structure well,
+            leave locality empty and use <see cref="P:Google.Maps.WebServices.AddressValidation.PostalAddress.AddressLines" />.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.PostalAddress.Organization">
+            <summary>
+            Please avoid setting this field. The Address Validation API does not currently use it.
+            </summary>
+            <remarks>
+            Although at this time the API will not reject requests with this field set,
+            the information will be discarded and will not be returned in the response.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.PostalAddress.PostalCode">
+            <summary>
+            Postal code of the address.
+            </summary>
+            <remarks>
+            Not all countries use or require postal codes to be present, but where they are used,
+            they may trigger additional validation with other parts of the address
+            (e.g. state/zip validation in the U.S.A.).
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.PostalAddress.Recipients">
+            <summary>
+            Please avoid setting this field. The Address Validation API does not currently use it.
+            </summary>
+            <remarks>
+            Although at this time the API will not reject requests with this field set,
+            the information will be discarded and will not be returned in the response.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.PostalAddress.RegionCode">
+            <summary>
+            CLDR region code of the country/region of the address.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.PostalAddress.Revision">
+            <summary>
+            The schema revision of the <see cref="T:Google.Maps.WebServices.AddressValidation.PostalAddress" />.
+            </summary>
+            <remarks>
+            Any value other than 0 will cause the API to return an <see cref="F:Google.Maps.WebServices.Common.ApiResponseStatus.InvalidArgument"/> error.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.PostalAddress.SortingCode">
+            <summary>
+            Additional, country-specific, sorting code.
+            </summary>
+            <remarks>
+            This is not used in most regions. Where it is used, the value is either a string like "CEDEX", optionally followed
+            by a number (e.g. "CEDEX 7"), or just a number alone, representing the "sector code" (Jamaica), "delivery area
+            indicator" (Malawi) or "post office indicator" (e.g. Côte d'Ivoire).
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.AddressValidation.PostalAddress.Sublocality">
+            <summary>
+            Sublocality of the address.
+            </summary>
+            <remarks>
+            For example, this can be neighborhoods, boroughs, districts.
+            </remarks>
         </member>
         <member name="T:Google.Maps.WebServices.Common.GoogleMapsRequestOptions`1">
             <summary>
@@ -2419,6 +2976,24 @@
         <member name="P:Google.Maps.WebServices.Common.TimeZoneTextValueObject.Value">
             <summary>
             The time specified as Unix time, or seconds since midnight, January 1, 1970 UTC.
+            </summary>
+        </member>
+        <member name="T:Google.Maps.WebServices.Common.Viewport">
+            <summary>
+            A latitude-longitude viewport, represented as two diagonally opposite low and high points.
+            </summary>
+            <remarks>
+            A viewport is considered a closed region, i.e. it includes its boundary.
+            </remarks>
+        </member>
+        <member name="P:Google.Maps.WebServices.Common.Viewport.High">
+            <summary>
+            The high point of the viewport.
+            </summary>
+        </member>
+        <member name="P:Google.Maps.WebServices.Common.Viewport.Low">
+            <summary>
+            The low point of the viewport.
             </summary>
         </member>
         <member name="T:Google.Maps.WebServices.Common.Waypoint">

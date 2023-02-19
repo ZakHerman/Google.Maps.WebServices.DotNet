@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Google.Maps.WebServices.Common;
 using Google.Maps.WebServices.Converters;
 using Google.Maps.WebServices.Exceptions;
+using Google.Maps.WebServices.Extensions;
 using Google.Maps.WebServices.Internals;
 using Newtonsoft.Json;
 using Polly;
@@ -91,6 +93,30 @@ namespace Google.Maps.WebServices
             request.ValidateRequest();
 
             HttpResponseMessage httpResponse = await _policyWrap.ExecuteAsync(async ct => await _httpClient.GetAsync(request.Uri, ct), cancellationToken);
+
+            return await HandleResponseAsync<TResponse, TResult>(httpResponse);
+        }
+
+        /// <summary>
+        /// Sends a POST request to the web service.
+        /// </summary>
+        /// <typeparam name="TRequest">The request body class.</typeparam>
+        /// <typeparam name="TResponse">The <see cref="GoogleMapsResponse{TResult}" /> class.</typeparam>
+        /// <typeparam name="TResult">The Google Maps Web Service result class.</typeparam>
+        /// <param name="uri">The request URI.</param>
+        /// <param name="request">The instance of the Google Maps Web Service request builder class.</param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The <see cref="GoogleMapsResponse{TResult}" /> class.</returns>
+        internal async Task<GoogleMapsResponse<TResult>> PostAsync<TRequest, TResponse, TResult>(Uri uri, TRequest request, CancellationToken cancellationToken = default)
+            where TResponse : class, IResponse<TResult>
+        {
+            uri = new UriBuilder(uri).AddQueryParameter("key", _apiKey).Uri;
+            string json = JsonConvert.SerializeObject(request);
+            StringContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage httpResponse = await _policyWrap.ExecuteAsync(async ct => await _httpClient.PostAsync(uri, httpContent, ct), cancellationToken);
 
             return await HandleResponseAsync<TResponse, TResult>(httpResponse);
         }
