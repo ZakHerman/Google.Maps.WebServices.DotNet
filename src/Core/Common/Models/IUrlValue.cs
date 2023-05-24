@@ -1,14 +1,13 @@
-﻿namespace Google.Maps.WebServices.Common
+﻿namespace Google.Maps.WebServices.Common;
+
+/// <summary>
+/// Interface implemented by classes to ensure valid request strings.
+/// </summary>
+public interface IUrlValue
 {
     /// <summary>
-    /// Interface implemented by classes to ensure valid request strings.
+    /// Returns the object, represented as a URI value.
     /// </summary>
-    public interface IUrlValue
-    {
-        /// <summary>
-        /// Returns the object, represented as a URI value.
-        /// </summary>
-        /// <returns>The object, represented as a URI value (not URL encoded).</returns>
-        string ToUriValue();
-    }
+    /// <returns>The object, represented as a URI value (not URL encoded).</returns>
+    string ToUriValue();
 }

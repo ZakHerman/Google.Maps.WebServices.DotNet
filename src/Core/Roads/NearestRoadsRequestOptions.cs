@@ -2,37 +2,35 @@
 using System.Collections.Generic;
 using Google.Maps.WebServices.Common;
 
-namespace Google.Maps.WebServices.Roads
+namespace Google.Maps.WebServices.Roads;
+
+/// <summary>
+/// A request builder class for the Google Maps Nearest Roads Web Service.
+/// </summary>
+public class NearestRoadsRequestOptions : GoogleMapsRequestOptions<NearestRoadsRequestOptions>
 {
+    private const string RoadsUrlHost = "https://roads.googleapis.com";
+    private const string RoadsUrlPath = "/v1/nearestRoads";
+
     /// <summary>
-    /// A request builder class for the Google Maps Nearest Roads Web Service.
+    /// Constructs an instance of the <see cref="NearestRoadsRequestOptions" /> class.
     /// </summary>
-    public class NearestRoadsRequestOptions : GoogleMapsRequestOptions<NearestRoadsRequestOptions>
+    public NearestRoadsRequestOptions() : base(RoadsUrlHost, RoadsUrlPath)
+    { }
+
+    /// <summary>
+    /// Constructs an instance of the <see cref="NearestRoadsRequestOptions" /> class.
+    /// </summary>
+    /// <param name="points">The location points to process.</param>
+    internal NearestRoadsRequestOptions(IEnumerable<LatLngLiteral> points) : base(RoadsUrlHost, RoadsUrlPath)
     {
-        private const string RoadsUrlHost = "https://roads.googleapis.com";
-        private const string RoadsUrlPath = "/v1/nearestRoads";
+        ArgumentNullException.ThrowIfNull(points, nameof(points));
 
-        /// <summary>
-        /// Constructs an instance of the <see cref="NearestRoadsRequestOptions" /> class.
-        /// </summary>
-        public NearestRoadsRequestOptions() : base(RoadsUrlHost, RoadsUrlPath)
-        { }
+        SetPoints(points);
+    }
 
-        /// <summary>
-        /// Constructs an instance of the <see cref="NearestRoadsRequestOptions" /> class.
-        /// </summary>
-        /// <param name="points">The location points to process.</param>
-        internal NearestRoadsRequestOptions(IEnumerable<LatLngLiteral> points) : base(RoadsUrlHost, RoadsUrlPath)
-        {
-            if (points is null)
-                throw new ArgumentNullException(nameof(points));
-
-            SetPoints(points);
-        }
-
-        internal NearestRoadsRequestOptions SetPoints(IEnumerable<LatLngLiteral> points)
-        {
-            return SetQueryParameter("points", string.Join("|", points));
-        }
+    internal NearestRoadsRequestOptions SetPoints(IEnumerable<LatLngLiteral> points)
+    {
+        return SetQueryParameter("points", string.Join("|", points));
     }
 }

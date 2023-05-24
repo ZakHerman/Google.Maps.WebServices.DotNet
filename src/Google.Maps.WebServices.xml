@@ -371,9 +371,9 @@
             </summary>
         </member>
         <member name="T:Google.Maps.WebServices.AddressValidation.AddressValidationResponseEnvelope">
-             <summary>
-            
-             </summary>
+            <summary>
+            A response envelope for the address validation.
+            </summary>
         </member>
         <member name="M:Google.Maps.WebServices.AddressValidation.AddressValidationResponseEnvelope.#ctor">
             <summary>
@@ -388,14 +388,14 @@
             <param name="responseId">A <see cref="P:Google.Maps.WebServices.AddressValidation.AddressValidationResponseEnvelope.ResponseId" />.</param>
         </member>
         <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationResponseEnvelope.AddressValidationResult">
-             <summary>
-            
-             </summary>
+            <summary>
+            The result of the address validation.
+            </summary>
         </member>
         <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationResponseEnvelope.ResponseId">
-             <summary>
-            
-             </summary>
+            <summary>
+            The response id.
+            </summary>
         </member>
         <member name="T:Google.Maps.WebServices.AddressValidation.AddressValidationResult">
             <summary>
@@ -3406,7 +3406,7 @@
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsGeocodedWaypoint.GeocoderStatus">
             <summary>
-            Indicates the status code resulting from the geocoding operation. 
+            Indicates the status code resulting from the geocoding operation.
             </summary>
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsGeocodedWaypoint.PartialMatch">
@@ -3417,7 +3417,7 @@
             <remarks>
             Partial matches most often occur for street addresses that do not exist within the
             locality you pass in the request. Partial matches may also be returned when a request
-            matches two or more locations in the same locality. 
+            matches two or more locations in the same locality.
             </remarks>
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsGeocodedWaypoint.PlaceId">
@@ -3964,7 +3964,7 @@
         </member>
         <member name="T:Google.Maps.WebServices.Directions.DirectionsViaWaypoint">
             <summary>
-            
+            Directions via waypoints.
             </summary>
         </member>
         <member name="P:Google.Maps.WebServices.Directions.DirectionsViaWaypoint.Location">
@@ -5309,23 +5309,6 @@
             </summary>
             <param name="errorMessage">The message that describes the error.</param>
         </member>
-        <member name="M:Google.Maps.WebServices.Extensions.StringBuilderExtensions.AppendJoin``1(System.Text.StringBuilder,System.String,System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Concatenates and appends the members of a collection, using the specified separator
-            between each member.
-            </summary>
-            <typeparam name="T">The type of the members of <paramref name="values" />.</typeparam>
-            <param name="stringBuilder">The <see cref="T:System.Text.StringBuilder" /> to act on.</param>
-            <param name="separator">
-            The string to use as a separator. separator is included in the concatenated and appended
-            strings only if values has more than one element.
-            </param>
-            <param name="values">
-            A collection that contains the objects to concatenate and append to the current instance
-            of the string builder.
-            </param>
-            <returns>A reference to this instance after the append operation has completed.</returns>
-        </member>
         <member name="M:Google.Maps.WebServices.Extensions.UriBuilderExtensions.AddQueryParameter(System.UriBuilder,System.String,System.String)">
             <summary>
             Adds the specified parameter to the Query String.
@@ -5335,7 +5318,7 @@
             <param name="paramValue">Value for the parameter to add.</param>
             <returns>Url with added parameter.</returns>
         </member>
-        <member name="T:Google.Maps.WebServices.Util.PolylineEncoding">
+        <member name="T:Google.Maps.WebServices.Utils.PolylineEncoding">
             <summary>
             Utility class that encodes and decodes polylines.
             </summary>
@@ -5345,14 +5328,14 @@
             Polyline Algorithm</see> for more detail.
             </remarks>
         </member>
-        <member name="M:Google.Maps.WebServices.Util.PolylineEncoding.Decode(System.String)">
+        <member name="M:Google.Maps.WebServices.Utils.PolylineEncoding.Decode(System.String)">
             <summary>
             Decodes an encoded path string into a sequence of <see cref="T:Google.Maps.WebServices.Common.LatLngLiteral" />.
             </summary>
             <param name="encodedPath">The encoded polyline to be decoded.</param>
             <returns>A collection of <see cref="T:Google.Maps.WebServices.Common.LatLngLiteral" />.</returns>
         </member>
-        <member name="M:Google.Maps.WebServices.Util.PolylineEncoding.Encode(System.Collections.Generic.IEnumerable{Google.Maps.WebServices.Common.LatLngLiteral})">
+        <member name="M:Google.Maps.WebServices.Utils.PolylineEncoding.Encode(System.Collections.Generic.IEnumerable{Google.Maps.WebServices.Common.LatLngLiteral})">
             <summary>
             Encodes a sequence of <see cref="T:Google.Maps.WebServices.Common.LatLngLiteral" /> into an encoded path string.
             </summary>

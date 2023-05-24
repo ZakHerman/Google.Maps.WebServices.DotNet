@@ -2,28 +2,27 @@
 using Google.Maps.WebServices.Common;
 using Newtonsoft.Json;
 
-namespace Google.Maps.WebServices.Geocoding
+namespace Google.Maps.WebServices.Geocoding;
+
+/// <summary>
+/// <see cref="GeocodingServiceResponse" /> represents the the Google Maps Geocoding Web Service response.
+/// </summary>
+public class GeocodingServiceResponse : IResponse<IEnumerable<GeocodingResult>>
 {
-    /// <summary>
-    /// <see cref="GeocodingServiceResponse" /> represents the the Google Maps Geocoding Web Service response.
-    /// </summary>
-    public class GeocodingServiceResponse : IResponse<IEnumerable<GeocodingResult>>
-    {
-        /// <inheritdoc />
-        [JsonProperty("error_message")]
-        public string ErrorMessage { get; set; }
+    /// <inheritdoc />
+    [JsonProperty("error_message")]
+    public string ErrorMessage { get; set; }
 
-        /// <inheritdoc />
-        public bool IsSuccessful => ResponseStatus == ApiResponseStatus.Ok || ResponseStatus == ApiResponseStatus.ZeroResults;
+    /// <inheritdoc />
+    public bool IsSuccessful => ResponseStatus is ApiResponseStatus.Ok or ApiResponseStatus.ZeroResults;
 
-        /// <inheritdoc />
-        [JsonProperty("status")]
-        public ApiResponseStatus ResponseStatus { get; set; }
+    /// <inheritdoc />
+    [JsonProperty("status")]
+    public ApiResponseStatus ResponseStatus { get; set; }
 
-        /// <inheritdoc />
-        public IEnumerable<GeocodingResult> Result => GeocodingResults;
+    /// <inheritdoc />
+    public IEnumerable<GeocodingResult> Result => GeocodingResults;
 
-        [JsonProperty("results")]
-        private IEnumerable<GeocodingResult> GeocodingResults { get; } = new List<GeocodingResult>();
-    }
+    [JsonProperty("results")]
+    private IEnumerable<GeocodingResult> GeocodingResults { get; } = new List<GeocodingResult>();
 }
