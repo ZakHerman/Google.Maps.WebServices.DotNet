@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Google.Maps.WebServices.Common;
-using Google.Maps.WebServices.Util;
+using Google.Maps.WebServices.Utils;
 using Xunit;
 
-namespace Google.Maps.WebServices.Tests.Util
+namespace Google.Maps.WebServices.Tests.Utils
 {
     public class PolylineEncodingTests
     {

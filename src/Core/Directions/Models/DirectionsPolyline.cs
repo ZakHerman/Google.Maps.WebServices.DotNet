@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Google.Maps.WebServices.Common;
-using Google.Maps.WebServices.Util;
+using Google.Maps.WebServices.Utils;
 using Newtonsoft.Json;
 
 namespace Google.Maps.WebServices.Directions

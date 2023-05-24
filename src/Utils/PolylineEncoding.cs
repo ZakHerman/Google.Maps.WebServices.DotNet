@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Google.Maps.WebServices.Common;
 
-namespace Google.Maps.WebServices.Util
+namespace Google.Maps.WebServices.Utils
 {
     /// <summary>
     /// Utility class that encodes and decodes polylines.
