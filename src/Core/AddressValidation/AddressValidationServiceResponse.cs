@@ -7,7 +7,7 @@ namespace Google.Maps.WebServices.AddressValidation
     /// <summary>
     ///
     /// </summary>
-    public class AddressValidationServiceResponse : IResponse<AddressValidationResponse>
+    public class AddressValidationServiceResponse : IResponse<AddressValidationResponseEnvelope>
     {
         /// <inheritdoc />
         public string ErrorMessage => Error?.Message;
@@ -19,7 +19,7 @@ namespace Google.Maps.WebServices.AddressValidation
         public ApiResponseStatus ResponseStatus => Error?.ResponseStatus ?? ApiResponseStatus.Ok;
 
         /// <inheritdoc />
-        public AddressValidationResponse Result => new AddressValidationResponse(AddressValidationResult, ResponseId);
+        public AddressValidationResponseEnvelope Result => new AddressValidationResponseEnvelope(AddressValidationResult, ResponseId);
 
         [JsonProperty("result")]
         private AddressValidationResult AddressValidationResult { get; set; }

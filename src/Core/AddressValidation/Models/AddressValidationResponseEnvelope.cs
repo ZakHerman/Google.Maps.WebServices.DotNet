@@ -5,20 +5,20 @@ namespace Google.Maps.WebServices.AddressValidation
     /// <summary>
     ///
     /// </summary>
-    public class AddressValidationResponse
+    public class AddressValidationResponseEnvelope
     {
         /// <summary>
         /// Serialization constructor.
         /// </summary>
-        public AddressValidationResponse()
+        public AddressValidationResponseEnvelope()
         { }
 
         /// <summary>
-        /// Constructs an instance of the <see cref="AddressValidationResponse" /> class.
+        /// Constructs an instance of the <see cref="AddressValidationResponseEnvelope" /> class.
         /// </summary>
         /// <param name="addressValidationResult">A <see cref="AddressValidationResult" />.</param>
         /// <param name="responseId">A <see cref="ResponseId" />.</param>
-        public AddressValidationResponse(AddressValidationResult addressValidationResult, string responseId)
+        public AddressValidationResponseEnvelope(AddressValidationResult addressValidationResult, string responseId)
         {
             AddressValidationResult = addressValidationResult;
             ResponseId = responseId;

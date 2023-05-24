@@ -370,29 +370,29 @@
             indicates that the value is unknown.
             </summary>
         </member>
-        <member name="T:Google.Maps.WebServices.AddressValidation.AddressValidationResponse">
+        <member name="T:Google.Maps.WebServices.AddressValidation.AddressValidationResponseEnvelope">
              <summary>
             
              </summary>
         </member>
-        <member name="M:Google.Maps.WebServices.AddressValidation.AddressValidationResponse.#ctor">
+        <member name="M:Google.Maps.WebServices.AddressValidation.AddressValidationResponseEnvelope.#ctor">
             <summary>
             Serialization constructor.
             </summary>
         </member>
-        <member name="M:Google.Maps.WebServices.AddressValidation.AddressValidationResponse.#ctor(Google.Maps.WebServices.AddressValidation.AddressValidationResult,System.String)">
+        <member name="M:Google.Maps.WebServices.AddressValidation.AddressValidationResponseEnvelope.#ctor(Google.Maps.WebServices.AddressValidation.AddressValidationResult,System.String)">
             <summary>
-            Constructs an instance of the <see cref="T:Google.Maps.WebServices.AddressValidation.AddressValidationResponse" /> class.
+            Constructs an instance of the <see cref="T:Google.Maps.WebServices.AddressValidation.AddressValidationResponseEnvelope" /> class.
             </summary>
-            <param name="addressValidationResult">A <see cref="P:Google.Maps.WebServices.AddressValidation.AddressValidationResponse.AddressValidationResult" />.</param>
-            <param name="responseId">A <see cref="P:Google.Maps.WebServices.AddressValidation.AddressValidationResponse.ResponseId" />.</param>
+            <param name="addressValidationResult">A <see cref="P:Google.Maps.WebServices.AddressValidation.AddressValidationResponseEnvelope.AddressValidationResult" />.</param>
+            <param name="responseId">A <see cref="P:Google.Maps.WebServices.AddressValidation.AddressValidationResponseEnvelope.ResponseId" />.</param>
         </member>
-        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationResponse.AddressValidationResult">
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationResponseEnvelope.AddressValidationResult">
              <summary>
             
              </summary>
         </member>
-        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationResponse.ResponseId">
+        <member name="P:Google.Maps.WebServices.AddressValidation.AddressValidationResponseEnvelope.ResponseId">
              <summary>
             
              </summary>

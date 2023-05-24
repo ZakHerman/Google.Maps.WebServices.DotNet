@@ -28,13 +28,13 @@ namespace Google.Maps.WebServices.AddressValidation
         /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
         /// <returns>A <see cref="GoogleMapsResponse{AddressValidationResponse}" />.</returns>
-        public static Task<GoogleMapsResponse<AddressValidationResponse>> ValidateAddressAsync(this GoogleMapsServiceClient client, PostalAddress address,
+        public static Task<GoogleMapsResponse<AddressValidationResponseEnvelope>> ValidateAddressAsync(this GoogleMapsServiceClient client, PostalAddress address,
             string previousResponseId, bool enableUspsCass, CancellationToken cancellationToken = default)
         {
             Uri uri = new Uri("https://addressvalidation.googleapis.com/v1:validateAddress");
             var request = new AddressValidationRequest(address, previousResponseId, enableUspsCass);
 
-            return client.PostAsync<AddressValidationRequest, AddressValidationServiceResponse, AddressValidationResponse>(uri, request, cancellationToken);
+            return client.PostAsync<AddressValidationRequest, AddressValidationServiceResponse, AddressValidationResponseEnvelope>(uri, request, cancellationToken);
         }
     }
 }
